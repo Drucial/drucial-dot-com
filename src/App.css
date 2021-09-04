@@ -72,6 +72,7 @@ nav {
 	font-size: 1.4rem;
 	list-style: none;
 	background: var(--color-light);
+	position: relative;
 }
 
 a,
@@ -166,6 +167,7 @@ main::-webkit-scrollbar {
 
 .container-left {
 	width: 100%;
+	display: flex;
 }
 
 .container-right {
@@ -189,12 +191,19 @@ main::-webkit-scrollbar {
 .hero-image-link {
 	width: 100%;
 	height: 100%;
+	background-image: linear-gradient(
+		0deg,
+		rgb(0 0 0 / .8)0%,
+		rgb(0 0 0 / 0)35% 65%,
+		rgb(0 0 0 / .8)100%
+	);
 }
 
 .hero-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	display: none;
 }
 
 .post-description {
@@ -212,6 +221,7 @@ main::-webkit-scrollbar {
 	width: fit-content;
 	align-self: flex-end;
 	z-index: 2;
+	user-select: none;
 }
 
 .post-excerpt {
@@ -246,15 +256,63 @@ main::-webkit-scrollbar {
 
 .journal-container {
 	position: absolute;
-	top: 7%;
-	bottom: 0;
+	top: 100%;
 	right: 0;
-	z-index: 3;
-	width: var(--side-width);
+	left: 0;
+	width: 100%;
+	/* height: 100vh; */
+	z-index: -1;
 	background: rgb(0 0 0 / 0.7);
-	/* backdrop-filter: blur(16px); */
+	backdrop-filter: blur(16px);
+	box-shadow: 0px 0px 20px rgb(0 0 0 / 0.5);
 
 	display: none;
+}
+
+.show {
+	display: block;
+}
+
+.post-preview * {
+	color: var(--color-light)
+}
+
+.post-preview {
+	padding: 1rem;
+}
+
+.post-preview > .post-link::after {
+	border-bottom: 1px solid var(--color-light);
+}
+
+
+.post-preview-title {
+	display: inline-block;
+	width: 50%;
+}
+
+.post-number {
+	font-size: 1.3em;
+}
+
+.post-more {
+	display: inline-block;
+	text-align: right;
+	font-size: 1.2rem;
+	width: 50%;
+}
+
+.close-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 35px;
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--color-light);
+	user-select: none;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -287,6 +345,10 @@ main::-webkit-scrollbar {
 
 	.container-left {
 		flex: 1 2 auto;
+	}
+
+	.hero-image {
+		display: block;
 	}
 
 	.container-right {

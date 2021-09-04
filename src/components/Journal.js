@@ -33,12 +33,12 @@ export default function Journal({ onToggle }) {
           <div key={index} className='post-preview'>
               <Link to={"/" + post.slug.current} key={post.slug.current} className='post-link'>
                 <p className='post-date'>{post.publishedOn}</p>
-                <h1><span className='post-number'>{post.postNumber}\</span>{post.title}</h1>
+                <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
                 <h3 className='post-more'>Read >></h3>
               </Link>
             </div>
         ))}
-        <div className='close-btn'><button onClick={onToggle}>X</button></div>
+        <div className='close-btn'><button className="link-button" onClick={onToggle}>X</button></div>
     </div>
   );
 }
