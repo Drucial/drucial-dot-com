@@ -31,7 +31,7 @@ export default function Journal({ onToggle }) {
       {allPostsData &&
         allPostsData.map((post, index) => (
           <div key={index} className='post-preview'>
-              <Link to={"/" + post.slug.current} key={post.slug.current} className='post-link'>
+              <Link to={"/" + post.slug.current} key={post.slug.current} className='post-link' onClick={onToggle}>
                 <p className='post-date'>{post.publishedOn}</p>
                 <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
                 <h3 className='post-more'>Read >></h3>
