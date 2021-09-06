@@ -36,6 +36,14 @@ export default {
       type: 'string',
     },
     {
+      name: 'headerImage',
+      title: 'Header image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'publishedOn',
       title: 'Published On',
       type: 'date',

@@ -65,7 +65,7 @@ export default function About() {
                         </div>
                     </div>
                     <div className="bio">
-                        <h3>Bio:</h3>
+                        <h2>Bio:</h2>
                         <div className="fixed-container minimized">
                             <p>I grew up in the cascade mountains, 30 minutes outside of Seattle Washington in, what was then, a sleepy one traffic light town in the Snoqualmie Valley.</p>
                             <p>As a kid growing up with the outdoors literally at my doorstep, I took every opportunity to get outside and enjoy the incredible wonders of the evergreen forests. I spent an enormous amount of time biking, snowboarding, skateboarding and hiking. What more could a kid ask for?</p>

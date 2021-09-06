@@ -18,6 +18,12 @@ export default function JournalPost() {
       title,
       _id,
       slug,
+      headerImage{
+        asset->{
+          _id,
+          url
+        }
+      },
       mainImage{
         asset->{
           _id,
@@ -35,22 +41,25 @@ export default function JournalPost() {
 
   return (
     <main>
-      <article>
-        <header>
-          <div>
-            <div>
-              <h1>{singlePost.title}</h1>
-              {/* <img src="{}" alt="" /> */}
-              <p>Drew White</p>
-              <BlockContent 
-                blocks={singlePost.body}
-                projectID="2echsd1t"
-                dataset="production"
-              />
-            </div>
+      <section>
+        <div className="container-left page-left">
+          <img src={singlePost.headerImage.asset.url} alt="" />
+          <div className="content-block">
+            <BlockContent 
+              blocks={singlePost.body}
+              projectID="2echsd1t"
+              dataset="production"
+            />
           </div>
-        </header>
-      </article>
+        </div>
+        <div className="container-right">
+          <div className="text-container">
+            <h1 className="hero-title light-title">{singlePost.title}<span className="hero-post-number">/{singlePost.postNumber}</span></h1>
+            <h1 className="hero-title before light-title">{singlePost.title}<span className="hero-post-number">/{singlePost.postNumber}</span></h1>
+          </div>
+
+        </div>
+      </section>
     </main>
   )
 }
