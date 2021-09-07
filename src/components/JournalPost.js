@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client'
-// import imageUrlBuilder from '@sanity/image-url';
+import SocialNav from './SocialNav'
 import BlockContent from "@sanity/block-content-to-react"
-
-// const builder = imageUrlBuilder(sanityClient);
-// function urlFor(source) {
-//   return builder.image(source)
-// }
 
 export default function JournalPost() {
   const [singlePost, setSinglePost] = useState(null)
@@ -18,6 +13,7 @@ export default function JournalPost() {
       title,
       _id,
       slug,
+      postNumber,
       headerImage{
         asset->{
           _id,
@@ -41,23 +37,30 @@ export default function JournalPost() {
 
   return (
     <main>
-      <section>
-        <div className="container-left page-left">
-          <img src={singlePost.headerImage.asset.url} alt="" />
-          <div className="content-block">
-            <BlockContent 
-              blocks={singlePost.body}
-              projectID="2echsd1t"
-              dataset="production"
-            />
+      <section className='post-section'>
+        <div className="container-left post-content">
+          <div className="header-container">
+            <img className='header-image' src={singlePost.headerImage.asset.url} alt={singlePost.title} />
+            <div className="mobile-title">
+              <h1 className="hero-title header-title">{singlePost.title}<span className="hero-post-number">/{singlePost.postNumber}</span></h1>
+            </div>
+          </div>
+          <div className="content-container post-margin">
+            <div className="content-block">
+              <BlockContent
+                className='blockContent'
+                blocks={singlePost.body}
+                projectID="2echsd1t"
+                dataset="production"
+              />
+            </div>
           </div>
         </div>
-        <div className="container-right">
-          <div className="text-container">
-            <h1 className="hero-title light-title">{singlePost.title}<span className="hero-post-number">/{singlePost.postNumber}</span></h1>
-            <h1 className="hero-title before light-title">{singlePost.title}<span className="hero-post-number">/{singlePost.postNumber}</span></h1>
+        <div className="container-right post-right">
+          <SocialNav />
+          <div className="text-container light-title post-title-mobile">
+            <h1 className="hero-title vertical">{singlePost.title}<span className="hero-post-number">/{singlePost.postNumber}</span></h1>
           </div>
-
         </div>
       </section>
     </main>

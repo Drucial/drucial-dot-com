@@ -36,6 +36,16 @@ export default {
         type: 'blockContent',
       },
       {
+        name: 'sideHeading',
+        title: 'Sidebar Heading',
+        type: 'string',
+      },
+      {
+        name: 'sideBar',
+        title: 'Sidebar Content',
+        type: 'blockContent',
+      },
+      {
         name: 'excerpt',
         title: 'Excerpt',
         type: 'string',

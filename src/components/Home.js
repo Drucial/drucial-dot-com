@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import SocialNav from './SocialNav'
 import sanityClient from '../client';
 
 export default function Home() {
@@ -47,12 +48,16 @@ export default function Home() {
   }, []);
   return (
     <main ref={mainRef}>
+      <SocialNav />
       {allPostsData &&
       allPostsData.map((post, index) => (
         <section key={index} style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
           <div className="container-left">
             <Link to={'/' + post.slug.current} key={post.slug.current} className="hero-image-link">
               <img className="hero-image" src={post.mainImage.asset.url} alt={post.imageAlt} />
+              <div className="mobile-title">
+                <h1 className="hero-title header-title">{post.title}<span className="hero-post-number">/{post.postNumber}</span></h1>
+            </div>
             </Link>
           </div>
           <div className="container-right">
