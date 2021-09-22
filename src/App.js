@@ -23,5 +23,12 @@ const App = () => {
   )
 }
 
+function setViewPortHeight() {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setViewPortHeight()
+window.addEventListener('resize', setViewPortHeight);
+
 export default App
 

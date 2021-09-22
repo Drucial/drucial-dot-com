@@ -1,28 +1,39 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import Journal from './Journal';
 
 const Nav = () => {
     const [showJournal, setShowJournal] = useState(false)
-    
-    const toggleJournal = () => {
-        const journalCont = document.querySelector('.journal-container')
-        if(showJournal === false) {
-            setShowJournal(true)
-            journalCont.classList.add('show')
-        } else {
-            setShowJournal(false)
-            journalCont.classList.remove('show')
-        }
-    }
 
-    const closeJournal = ()=> {
-        const journalCont = document.querySelector('.journal-container')
+    const handleJournal = () => {
         if(showJournal === false) {
-            return
+            setShowJournal(true);
+            setTimeout(() => {
+                const journal = document.querySelector('.journal-container')
+                journal.classList.add('show')
+            }, 50)
         } else {
-            setShowJournal(false)
-            journalCont.classList.remove('show')
+            const journal = document.querySelector('.journal-container')
+            journal.classList.remove('show');
+            setTimeout(() => {
+                setShowJournal(false)
+            }, 300)
+        }
+
+    }
+    // const toggleJournal = () => {
+    //     showJournal === false ? setShowJournal(true): setTimeout(() => {
+    //         setShowJournal(false)
+    //     }, 200)
+    // }
+    const closeJournal = () => {
+        if(showJournal === true) {
+            const journal = document.querySelector('.journal-container')
+            journal.classList.remove('show');
+            setTimeout(() => {
+                setShowJournal(false)
+            }, 300)
         }
     }
     return (
@@ -33,14 +44,15 @@ const Nav = () => {
                 </Link>
             </div>
             <ul className="nav-links">
-                    <li className="nav-link"><button className='link-button' onClick={toggleJournal}>Journal</button></li>
-                <Link to='/about' onClick={closeJournal}>
-                    <li className="nav-link">About</li>
+                <button className='link-button' onClick={handleJournal}>
+                    <li className="nav-link">Journal</li></button>
+                <Link to='/about' >
+                    <li className="nav-link" onClick={closeJournal}>About</li>
                 </Link>
-                <Link to='/contact' onClick={closeJournal}>
-                    <li className="nav-link">Contact</li>
+                <Link to='/contact'>
+                    <li className="nav-link" onClick={closeJournal}>Contact</li>
                 </Link>
-            <Journal journal={showJournal} onToggle={toggleJournal}/>
+                {showJournal === true ? <Journal journal={showJournal} onToggle={handleJournal}/> : null}
             </ul>
         </nav>
     )
