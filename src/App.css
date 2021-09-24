@@ -7,6 +7,8 @@
 :root {
 	--vh: 0;
 	--color-light: #fcfcfc;
+	--color-medium: #f1f1f1;
+	--color-medium200: #e9e9e9;
 	--color-dark: #2f2f2f;
 	--color-darker: #1f1f1f;
 	--color-accent200: #a1210d;
@@ -264,7 +266,6 @@ section {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	scroll-snap-align: start;
 }
 
 .container-left {
@@ -273,6 +274,11 @@ section {
 		rgb(0 0 0 / 0.5) 5%,
 		rgb(0 0 0 / 0) 25%
 	);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	z-index: 1;
 }
 
 .container-right {
@@ -291,6 +297,10 @@ section {
 /*  */
 /* HOME PAGE STYLES*/
 /*  */
+
+.home-section {
+	scroll-snap-align: start;
+}
 
 .scroll-nav {
 	display: flex;
@@ -373,6 +383,82 @@ section {
 }
 
 /*  */
+/* ABOUT PAGE STYLES */
+/*  */
+
+.page-section {
+	
+}
+
+.content-block {
+	background: var(--color-light);
+}
+
+.about-content {
+	margin: 35px 4rem 90px 4rem;
+	max-width: 65ch;
+	padding: 2rem 1.5rem;
+	background-image: linear-gradient(
+		-140deg,
+		rgb(252 252 252),
+		rgb(220 220 220)
+	);
+	border: 1px solid rgb(0 0 0 / .005);
+	border-radius: 1px;
+	position: relative;
+	box-shadow: -10px 10px 20px rgb(0 0 0 / .2);
+}
+
+.about-content::before {
+	content: '';
+	position: absolute;
+	bottom: -5%;
+	top: 0;
+	right: 0;
+	left: 0;
+	background-image: linear-gradient(
+		-180deg,
+		rgb(252 252 252)50%,
+		rgb(180 180 180)
+	);
+	box-shadow: -2px 2px 15px rgb(0 0 0 / 1);
+	transform: rotate(5deg);
+	z-index: -1;
+}
+
+.about-block {
+	position: relative;
+	z-index: 2;
+}
+
+.about-block p:not(first-child) {
+	margin-top: 1rem;
+}
+
+.about-block p:first-child:first-letter {
+	color: var(--color-accent200);
+	float: left;
+	font-size: 4em;
+	line-height: 1;
+	padding-right: 1rem;
+}
+
+.about-block h3 {
+	font-size: 2em;
+	text-align: right;
+	margin-top: 1rem;
+}
+
+.page-title {
+	font-size: clamp(3rem, 7vw + 1rem, 14rem);
+	white-space: nowrap;
+	align-self: flex-end;
+	margin: 0rem 0.75rem 0rem 0;
+	line-height: 1;
+	z-index: 1;
+}
+
+/*  */
 /* MEDIA QUERY STYLES */
 /*  */
 
@@ -441,5 +527,18 @@ section {
 
 	.post-number {
 		font-size: 1.2em;
+	}
+
+	.content-block {
+		padding: 1rem 1rem;
+		text-align: justify;
+	}
+
+	.about-content {
+		margin: 1rem;
+	}
+
+	.about-content:before {
+		display: none;
 	}
 }

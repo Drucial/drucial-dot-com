@@ -95,7 +95,7 @@ export default function Home() {
 			</div>
       {allPostsData &&
       allPostsData.map((post, index) => (
-        <section key={index} style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
+        <section className="home-section" key={index} style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
           <div className="container-left">
             <Link to={'/' + post.slug.current} key={post.slug.current} className="post-image-link">
               <img className="mobile-image" src={post.mainImage.asset.url} alt={post.imageAlt}/>
