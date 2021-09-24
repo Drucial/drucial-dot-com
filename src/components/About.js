@@ -40,43 +40,43 @@ export default function About() {
     if (!singlePage) return <div>loading....</div>
 
     return (
-        <main>
+        <>
             <SocialNav />
-            <section className="page-section" style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
-                <div className="container-left">
-                    <div className="content-block about-content">
-                        <BlockContent 
-                            className='blockContent about-block'
-                            blocks={singlePage.body}
-                            projectID="2echsd1t"
-                            dataset="production"
-                        />
+            <main>
+                <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
+                    <div className="container-left page-left">
+                        <div className="about-content">
+                            <BlockContent 
+                                className='block-content about-block'
+                                blocks={singlePage.body}
+                                projectID="2echsd1t"
+                                dataset="production"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="container-right">
-                    <div className="page-right">
-                        <div className="profile-block">
+                    <div className="container-right">
+                        <div className="profile">
                             {/* <img className='profile-pic'src={singlePage.mainImage.asset.url} alt={singlePage.imageAlt} /> */}
                             <div className="info">
                                 <h2>Drew White</h2>
                                 <p>Developer \ Marketer \ Learner</p>
                             </div>
+                            <div className="bio">
+                                <h2>{singlePage.sideHeading}</h2>
+                                {/* <div className="fixed-container minimized">
+                                    <BlockContent 
+                                        blocks={singlePage.sideBar}
+                                        projectID="2echsd1t"
+                                        dataset="production"
+                                    />
+                                </div> */}
+                                <button id="bio-more" onClick={readMore}>Keep Reading &darr;</button>
+                            </div>
                         </div>
-                        <div className="bio">
-                            <h2>{singlePage.sideHeading}</h2>
-                            {/* <div className="fixed-container minimized">
-                                <BlockContent 
-                                    blocks={singlePage.sideBar}
-                                    projectID="2echsd1t"
-                                    dataset="production"
-                                />
-                            </div> */}
-                            <button id="bio-more" onClick={readMore}>Keep Reading &darr;</button>
-                            <h1 className="page-title">{singlePage.title}</h1>
-                        </div>
+                        <h1 className="page-title">{singlePage.title}</h1>
                     </div>
-                </div>
-            </section>
-        </main>
+                </section>
+            </main>
+        </>
     )
 }

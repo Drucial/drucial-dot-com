@@ -21,9 +21,9 @@ export default function Home() {
       }
     }
 
-    setTitleColorOffset()
-    window.addEventListener('resize', setTitleColorOffset)
-  }, [allPostsData])
+      setTitleColorOffset()
+      window.addEventListener('resize', setTitleColorOffset)
+    }, [allPostsData])
 
   useEffect(() => {
     if (!mainRef.current) return;
@@ -87,12 +87,13 @@ export default function Home() {
       .catch(console.error);
   }, []);
   return (
-    <main ref={mainRef}>
-      <SocialNav />
+    <>
+    <SocialNav />
       <div className="scroll-nav">
 				<p className="scroll-text">Next</p>
 				<div className="chevron"></div>
 			</div>
+    <main ref={mainRef}>
       {allPostsData &&
       allPostsData.map((post, index) => (
         <section className="home-section" key={index} style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
@@ -114,5 +115,6 @@ export default function Home() {
         </section>
       ))}
     </main>
+    </>
   );
 }

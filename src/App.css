@@ -237,6 +237,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	margin-left: 0.65rem;
+	z-index: 99;
 }
 
 .social-nav-link {
@@ -278,7 +279,6 @@ section {
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	z-index: 1;
 }
 
 .container-right {
@@ -292,6 +292,18 @@ section {
 		var(--color-light) 90%
 	);
 	backdrop-filter: blur(0.5em);
+}
+
+.block-content p:not(first-child) {
+	margin-top: 1rem;
+}
+
+.block-content p:first-child:first-letter {
+	color: var(--color-accent200);
+	float: left;
+	font-size: 4em;
+	line-height: 1;
+	padding-right: 1rem;
 }
 
 /*  */
@@ -310,6 +322,7 @@ section {
 	position: absolute;
 	bottom: 0;
 	left: 0;
+	z-index: 99;
 	padding: 0.3em;
 	margin: 1.75rem 1rem;
 	color: var(--color-light);
@@ -386,12 +399,12 @@ section {
 /* ABOUT PAGE STYLES */
 /*  */
 
-.page-section {
-	
+.page-left {
+	z-index: 1;
 }
 
-.content-block {
-	background: var(--color-light);
+.page-right {
+	overflow: hidden;
 }
 
 .about-content {
@@ -429,18 +442,6 @@ section {
 .about-block {
 	position: relative;
 	z-index: 2;
-}
-
-.about-block p:not(first-child) {
-	margin-top: 1rem;
-}
-
-.about-block p:first-child:first-letter {
-	color: var(--color-accent200);
-	float: left;
-	font-size: 4em;
-	line-height: 1;
-	padding-right: 1rem;
 }
 
 .about-block h3 {
