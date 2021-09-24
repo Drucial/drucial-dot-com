@@ -26,6 +26,14 @@ export default {
         },
       },
       {
+        name: 'subImage',
+        title: 'Sub image',
+        type: 'image',
+        options: {
+          hotspot: true,
+        },
+      },
+      {
         name: 'imageAlt',
         title: 'Image Alt Text',
         type: 'string',
