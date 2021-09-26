@@ -88,6 +88,7 @@ nav {
 	display: grid;
 	grid-template-columns: 7fr minmax(320px, 3fr);
 	background: var(--color-light);
+	z-index: 1;
 }
 
 .logo-container {
@@ -155,7 +156,6 @@ nav {
 
 .journal-container {
 	position: absolute;
-	z-index: 1;
 	top: 100%;
 	left: -1px;
 	right: 0;
@@ -168,12 +168,6 @@ nav {
 	backdrop-filter: blur(0.5em);
 	border-left: none;
 	overflow-x: hidden;
-	transform: translateX(100%);
-	transition: transform 300ms ease-in-out;
-}
-
-.show {
-	transform: translateX(0);
 }
 
 .journal-preview {
@@ -563,12 +557,47 @@ section {
 @media only screen and (max-width: 860px) {
 	nav {
 		grid-template-columns: 1fr;
-		grid-template-rows: 1fr auto;
+		position: relative;
+		z-index: 1;
+	}
+
+	.hamburger {
+		width: 45px;
+		height: 45px;
+		position: relative;
+		z-index: 1;
+		background: var(--color-light;)
+	}
+
+	.hamburger::before,
+	.hamburger::after {
+		content: '';
+		position: absolute;
+		background: var(--color-dark);
+		right: 0;
+		height: 3px;
+	}
+
+	.hamburger::before {
+		top: 35%;
+		left: 10%;
+	}
+
+	.hamburger::after {
+		bottom: 35%;
+		left: 30%;
 	}
 
 	.logo-container {
-		justify-content: center;
+		justify-content: space-between;
 		padding: 0.5rem 1rem;
+		background: var(--color-light);
+	}
+	.nav-links {
+		position:absolute;
+		width: 100%;
+		top: 100%;
+		z-index: -1;
 	}
 
 	.nav-link {

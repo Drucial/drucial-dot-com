@@ -2,17 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client'
 import BlockContent from "@sanity/block-content-to-react"
-// import imageUrlBuilder from '@sanity/image-url'
-
-// const builder = imageUrlBuilder(sanityClient);
-// function urlFor(source) {
-//   return builder.image(source)
-// }
 
 export default function JournalPost() {
   const [singlePost, setSinglePost] = useState(null)
   const { slug } = useParams();
-
 
   useEffect(() => {
     sanityClient.fetch(`*[slug.current == '${slug}']{
@@ -49,7 +42,7 @@ export default function JournalPost() {
   }, [slug]);
   
 
-  if (!singlePost) return <div>loading....</div>
+  if (!singlePost) return <div className="loading">loading....</div>
 
   return (
     <main>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { animated } from "react-spring"
 import sanityClient from "../client";
 
-export default function Journal({ onToggle }) {
+export default function Journal({ toggle, style }) {
   const [allPostsData, setAllPosts] = useState(null);
   useEffect(() => {
     sanityClient
@@ -26,13 +27,16 @@ export default function Journal({ onToggle }) {
       .catch(console.error);
   }, []);
   return (
-    <div className="journal-container">
+    <animated.div className="journal-container" style={style}>
       {allPostsData &&
         allPostsData.map((post, index) => (
           <div key={index} className='journal-preview' style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
-              <Link to={"/" + post.slug.current} key={post.slug.current} onClick={onToggle}>
-                <div class="journal-link">
-                  <p className='post-date'>{post.publishedOn}</p>
+              <Link to={"/" + post.slug.current} key={post.slug.current} onClick={toggle}>
+                <div className="journal-link">
+                  <p className='post-date'>{(() => {
+              const dateArr = post.publishedOn.split('-');
+              return(`${dateArr[1]}.${dateArr[2]}.${dateArr[0]}`)
+            })()}</p>
                   <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
                   <h3 className='post-link'>Read >></h3>
                 </div>
@@ -40,7 +44,7 @@ export default function Journal({ onToggle }) {
             </div>
         ))}
         <div className='close-cont'></div>
-        <button className="close-btn" onClick={onToggle}>X</button>
-    </div>
+        <button className="close-btn">X</button>
+    </animated.div>
   );
 }

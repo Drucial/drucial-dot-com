@@ -1,59 +1,105 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Media from 'react-media';
+import { Transition, animated } from 'react-spring'
 import Journal from './Journal';
 
 const Nav = () => {
     const [showJournal, setShowJournal] = useState(false)
+    const [showNav, setShowNav] = useState(false)
 
-    const handleJournal = () => {
-        if(showJournal === false) {
-            setShowJournal(true);
-            setTimeout(() => {
-                const journal = document.querySelector('.journal-container')
-                journal.classList.add('show')
-            }, 100)
+    const menuToggle = () => {
+        showNav === false ? setShowNav(true) : setShowNav(false)
+    };
+
+    const closeNav = () => {
+        if(showNav === false) {
+            return
         } else {
-            const journal = document.querySelector('.journal-container')
-            journal.classList.remove('show');
-            setTimeout(() => {
-                setShowJournal(false)
-            }, 300)
+            setShowNav(false)
         }
+    };
 
-    }
-    // const toggleJournal = () => {
-    //     showJournal === false ? setShowJournal(true): setTimeout(() => {
-    //         setShowJournal(false)
-    //     }, 200)
-    // }
+    const journalToggle = () => {
+        showJournal === false ? setShowJournal(true) : setShowJournal(false);
+    };
     const closeJournal = () => {
-        if(showJournal === true) {
-            const journal = document.querySelector('.journal-container')
-            journal.classList.remove('show');
-            setTimeout(() => {
-                setShowJournal(false)
-            }, 300)
+        if(showJournal === false){
+            return
+        } else {
+            setShowJournal(false)
         }
-    }
+    };
+
     return (
-        <nav>
+        <nav onClick={closeJournal}>
             <div className="logo-container">
-                <Link to='/' className='logo-link' onClick={closeJournal}>
+                <Link to='/' className='logo-link' onClick={closeNav}>
                     <h3 className="logo">DRUCIAL</h3>
                 </Link>
+                <Media query="(max-width: 860px)" render={() =>
+                    (
+                        <div className="hamburger" onClick={menuToggle}></div>
+                    )}
+                />
             </div>
-            <ul className="nav-links">
-                <button className='link-button' onClick={handleJournal}>
-                    <li className="nav-link">Journal</li></button>
-                <Link to='/about' >
-                    <li className="nav-link" onClick={closeJournal}>About</li>
-                </Link>
-                <Link to='/contact'>
-                    <li className="nav-link" onClick={closeJournal}>Contact</li>
-                </Link>
-                {showJournal === true ? <Journal journal={showJournal} onToggle={handleJournal}/> : null}
-            </ul>
+            <Media query="(max-width: 860px)">
+                {matches =>
+                    matches ? (
+                        <Transition
+                                items={showNav}
+                                from={{ transform: 'translateY(-100%)' }}
+                                enter={{ transform: 'translateY(0%)' }}
+                                leave={{ transform: 'translateY(-100%)' }}
+                            >
+                                {(styles, item) =>
+                                item && 
+                                <animated.ul className="nav-links" style={styles}>
+                                    <button className='link-button' onClick={journalToggle}>
+                                        <li className="nav-link">Journal</li></button>
+                                    <Link to='/about' onClick={closeNav}>
+                                        <li className="nav-link">About</li>
+                                    </Link>
+                                    <Link to='/contact' onClick={closeNav}>
+                                        <li className="nav-link">Contact</li>
+                                    </Link>
+                                    <Transition
+                                        items={showJournal}
+                                        from={{ opacity: 1, transform: 'translateX(100%)' }}
+                                        enter={{ opacity: 1, transform: 'translateX(0%)' }}
+                                        leave={{ opacity: 1, transform: 'translateX(100%)' }}
+                                    >
+                                        {(styles, item) =>
+                                        item && <Journal style={styles} toggle={closeNav}/>
+                                        }
+                                    </Transition>
+                                </animated.ul>
+                                }
+                            </Transition>
+                    ) : (
+                        <ul className="nav-links">
+                            <button className='link-button' onClick={journalToggle}>
+                                <li className="nav-link">Journal</li></button>
+                            <Link to='/about'>
+                                <li className="nav-link">About</li>
+                            </Link>
+                            <Link to='/contact'>
+                                <li className="nav-link">Contact</li>
+                            </Link>
+                            <Transition
+                                items={showJournal}
+                                from={{ opacity: 0, transform: 'translateX(100%)' }}
+                                enter={{ opacity: 1, transform: 'translateX(0%)' }}
+                                leave={{ opacity: 0, transform: 'translateX(100%)' }}
+                            >
+                                {(styles, item) =>
+                                item && <Journal style={styles}/>
+                                }
+                            </Transition>
+                        </ul>
+                    )
+                }
+            </Media>
         </nav>
     )
 }

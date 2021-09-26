@@ -7,6 +7,8 @@ import ScrollNav from './ScrollNav'
 export default function Home() {
   const [allPostsData, setAllPosts] = useState(null);
   const mainRef = useRef();  
+
+  // Section Title Offset Color
   useEffect(() => {
     function setTitleColorOffset() {
       if (!mainRef.current) return;
@@ -25,7 +27,7 @@ export default function Home() {
       setTitleColorOffset()
       window.addEventListener('resize', setTitleColorOffset)
     }, [allPostsData])
-
+// Scroll Nav Widget Controls
   useEffect(() => {
     if (!mainRef.current) return;
     
@@ -64,7 +66,7 @@ export default function Home() {
       false
     );
   }, [allPostsData])
-
+// Content Import
   useEffect(() => {
     sanityClient
       .fetch(
@@ -87,6 +89,9 @@ export default function Home() {
       .then((data) => setAllPosts(data))
       .catch(console.error);
   }, []);
+
+  if (!allPostsData) return <div className="loading">loading....</div>
+
   return (
     <>
     <SocialNav />
