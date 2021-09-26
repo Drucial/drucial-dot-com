@@ -452,6 +452,8 @@ section {
 	background-size: cover;
 	background-repeat: no repeat;
 	position: relative;
+
+	overflow-x: hidden;
 }
 
 .title-container {
@@ -628,6 +630,7 @@ section {
 	.container-right {
 		background: var(--color-light);
 		justify-content: center;
+		align-items: center;
 	}
 
 	.post-preview {
