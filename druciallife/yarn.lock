@@ -1466,6 +1466,11 @@
   "resolved" "https://registry.npmjs.org/@sanity/image-url/-/image-url-0.140.22.tgz"
   "version" "0.140.22"
 
+"@sanity/image-url@^1.0.1":
+  "integrity" "sha512-AdKQ3zMk7WdoNwoJPrAvQhW+kUtBldBX0nHtnGy+rwmgsCQ0rAXasrgH43Fhmsp/yB6piiq+F2d5qEuBFsdQVg=="
+  "resolved" "https://registry.npmjs.org/@sanity/image-url/-/image-url-1.0.1.tgz"
+  "version" "1.0.1"
+
 "@sanity/imagetool@2.17.2":
   "integrity" "sha512-J8YelEkpA+x/x/Xtmvsvp0JmTkPE94yfNS6IE4ZxFubUr36FzGv6Ewc2ItBYiOosDatFQxSMfwyrU1LliYSXCQ=="
   "resolved" "https://registry.npmjs.org/@sanity/imagetool/-/imagetool-2.17.2.tgz"

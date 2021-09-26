@@ -29,11 +29,13 @@ export default function Journal({ onToggle }) {
     <div className="journal-container">
       {allPostsData &&
         allPostsData.map((post, index) => (
-          <div key={index} className='journal-preview'>
-              <Link to={"/" + post.slug.current} key={post.slug.current} className='journal-link' onClick={onToggle}>
-                <p className='post-date'>{post.publishedOn}</p>
-                <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
-                <h3 className='post-link'>Read >></h3>
+          <div key={index} className='journal-preview' style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
+              <Link to={"/" + post.slug.current} key={post.slug.current} onClick={onToggle}>
+                <div class="journal-link">
+                  <p className='post-date'>{post.publishedOn}</p>
+                  <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
+                  <h3 className='post-link'>Read >></h3>
+                </div>
               </Link>
             </div>
         ))}

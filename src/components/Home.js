@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import SocialNav from './SocialNav'
 import sanityClient from '../client';
+import SocialNav from './SocialNav'
+import ScrollNav from './ScrollNav'
 
 export default function Home() {
   const [allPostsData, setAllPosts] = useState(null);
@@ -89,10 +90,7 @@ export default function Home() {
   return (
     <>
     <SocialNav />
-      <div className="scroll-nav">
-				<p className="scroll-text">Next</p>
-				<div className="chevron"></div>
-			</div>
+    <ScrollNav />
     <main ref={mainRef}>
       {allPostsData &&
       allPostsData.map((post, index) => (
@@ -104,7 +102,10 @@ export default function Home() {
           </div>
           <div className="container-right">
             <div className="post-preview">
-              <p className="post-date">{post.publishedOn}</p>
+              <p className="post-date">{(() => {
+              const dateArr = post.publishedOn.split('-');
+              return(`${dateArr[1]}.${dateArr[2]}.${dateArr[0]}`)
+            })()}</p>
               <p className='post-desc'>{post.excerpt}</p>
               <Link to={'/' + post.slug.current} key={post.slug.current} className="post-link">
                 Keep Reading >>

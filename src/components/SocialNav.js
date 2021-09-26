@@ -4,11 +4,11 @@ import Linkedin from '../images/linkedin-icon.png'
 import Github from '../images/github-icon.png'
 import Codepen from '../images/codepen-icon.png'
 
-const SocialNav = () => {
+export default function SocialNav({ invert, direction, top }) {
     return (
-        <div className="social-nav">
+        <div className="social-nav" style={{ filter: invert, flexDirection: direction, top: top }}>
             <a className="social-nav-link" href="https://www.instagram.com/drucialwhite/" target="_blank" rel="noreferrer">
-                <img src={Instagram} alt='Instagram profile' className="social-nav-img"/>
+                <img src={Instagram} alt='Instagram profile' className="social-nav-img" />
             </a>
             <a className="social-nav-link" href="https://www.linkedin.com/in/drew-white-23315222/" target="_blank" rel="noreferrer">
                 <img src={Linkedin} alt="LinkedIn profile" className="social-nav-img" />
@@ -21,5 +21,4 @@ const SocialNav = () => {
             </a>
         </div>
     )
-}
-export default SocialNav
+};

@@ -44,6 +44,11 @@ export default {
       },
     },
     {
+      name: 'headerAlt',
+      title: 'Header Image Alt',
+      type: 'string',
+    },
+    {
       name: 'publishedOn',
       title: 'Published On',
       type: 'date',

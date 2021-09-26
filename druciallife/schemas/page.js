@@ -26,6 +26,11 @@ export default {
         },
       },
       {
+        name: 'imageAlt',
+        title: 'Image Alt Text',
+        type: 'string',
+      },
+      {
         name: 'subImage',
         title: 'Sub image',
         type: 'image',
@@ -34,8 +39,8 @@ export default {
         },
       },
       {
-        name: 'imageAlt',
-        title: 'Image Alt Text',
+        name: 'subImageAlt',
+        title: 'Sub Image Alt Text',
         type: 'string',
       },
       {

@@ -12,7 +12,7 @@ const Nav = () => {
             setTimeout(() => {
                 const journal = document.querySelector('.journal-container')
                 journal.classList.add('show')
-            }, 50)
+            }, 100)
         } else {
             const journal = document.querySelector('.journal-container')
             journal.classList.remove('show');
