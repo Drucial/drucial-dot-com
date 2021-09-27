@@ -173,7 +173,6 @@ nav {
 
 .journal-preview {
 	position: relative;
-	margin: .5rem;
 }
 
 .journal-preview::after {
@@ -318,6 +317,10 @@ section {
 	align-items: center;
 }
 
+.content-container {
+	margin: 2rem 0;
+}
+
 .post-date {
 	font-size: 1rem;
 }
@@ -451,6 +454,7 @@ section {
 
 .header-image {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
@@ -480,8 +484,34 @@ section {
 /*  */
 /* ABOUT PAGE STYLES */
 /*  */
+.profile-container {
+	text-align: center;
+	background: var(--color-light);
+	padding: 1rem 2rem;
+}
 
+.profile {
+	max-width: 850px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
+.profile-pic {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: .5rem;
+}
+
+.profile-details {
+	padding: .5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 /*  */
 /* MEDIA QUERY STYLES */
@@ -602,13 +632,9 @@ section {
 		text-align: justify;
 	}
 
-	.about-content {
-		background: var(--color-light);
-		padding: 1rem .75rem;
-		margin: .75rem;
-	}
-
-	.about-content:before {
-		display: none;
+	.profile-container {
+		padding: .5rem .5rem;
+		background: rgb(252 252 252 / .8);
+		backdrop-filter: blur(.2rem);
 	}
 }

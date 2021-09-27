@@ -5,6 +5,10 @@ import BlockContent from "@sanity/block-content-to-react"
 
 export default function About() {
     const [singlePage, setSinglePage] = useState(null)
+    const [author, setAuthor] = useState(null)
+// 
+// Content Import
+// 
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == "about"]{
             title,
@@ -30,8 +34,32 @@ export default function About() {
         .then((data) => setSinglePage(data[0]))
         .catch(console.error)
     }, []);
+// 
+// Author Import
+// 
+    useEffect(() => {
+        sanityClient.fetch(`*[slug.current == "drew-white"]{
+            name,
+            _id,
+            slug,
+            profileImage{
+                asset->{
+                _id,
+                url
+                }
+            },
+            profileAlt,
+            description,
+            details,
+            bio,
+        }`
+        )
+        .then((data) => setAuthor(data[0]))
+        .catch(console.error)
+    }, []);
     
-    if (!singlePage) return <div>loading....</div>
+    if (!singlePage) return <div className="loading">loading....</div>
+    if (!author) return <div className="loading">loading....</div>
 
     return (
         <>
@@ -44,18 +72,29 @@ export default function About() {
                             </div>
                         </div>
                         <div className="content-container">
-                            <img className='profile-pic'src={singlePage.subImage.asset.url} alt={singlePage.imageAlt} />
-                            <div className="info">
-                                <h2>Drew White</h2>
-                                <p>Developer \ Marketer \ Learner</p>
-                            </div>
-                            <div className="bio">
-                            </div>
-                        </div>
-                        <div className="content-container">
                             <BlockContent 
                                 className='block-content'
                                 blocks={singlePage.body}
+                                projectID="2echsd1t"
+                                dataset="production"
+                            />
+                        </div>
+                        <div className="header-image" style={{ backgroundImage: 'url(' + singlePage.subImage.asset.url + ')'}} alt={singlePage.title}>
+                            <div className="profile-container">
+                                <div className="profile">
+                                    <img className="profile-pic" src={author.profileImage.asset.url} alt={author.profileAlt}/>
+                                    <div className="profile-details">
+                                        <h2>{author.name}</h2>
+                                        <p>{author.description}</p>
+                                        <SocialNav  position={'static'} invert={'invert(100%)'} row={'row'} transform={'none'} margin={0} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="content-container about">
+                            <BlockContent 
+                                className='block-content'
+                                blocks={author.bio}
                                 projectID="2echsd1t"
                                 dataset="production"
                             />
