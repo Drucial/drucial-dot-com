@@ -30,15 +30,17 @@ export default function Journal({ toggle, style }) {
     <animated.div className="journal-container" style={style}>
       {allPostsData &&
         allPostsData.map((post, index) => (
-          <div key={index} className='journal-preview' style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
+          <div key={index} className='journal-preview'>
               <Link to={"/" + post.slug.current} key={post.slug.current} onClick={toggle}>
                 <div className="journal-link">
                   <p className='post-date'>{(() => {
               const dateArr = post.publishedOn.split('-');
               return(`${dateArr[1]}.${dateArr[2]}.${dateArr[0]}`)
             })()}</p>
-                  <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
-                  <h3 className='post-link'>Read >></h3>
+                  <div className="flex-container">
+                    <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
+                    <h4 className='post-link'>Read &gt;&gt;</h4>
+                  </div>
                 </div>
               </Link>
             </div>
