@@ -35,21 +35,15 @@ export default function About() {
 
     return (
         <>
-            <SocialNav />
             <main>
-                <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
-                    <div className="container-left page-left">
-                        <div className="about-content">
-                            <BlockContent 
-                                className='block-content about-block'
-                                blocks={singlePage.body}
-                                projectID="2echsd1t"
-                                dataset="production"
-                            />
+                <section>
+                    <div className="container-full">
+                        <div className="header-image" style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}} alt={singlePage.title}>
+                            <div className="title-container">
+                                <h1 className="single-post-title">{singlePage.title}</h1>
+                            </div>
                         </div>
-                    </div>
-                    <div className="container-right">
-                        <div className="profile">
+                        <div className="content-container">
                             <img className='profile-pic'src={singlePage.subImage.asset.url} alt={singlePage.imageAlt} />
                             <div className="info">
                                 <h2>Drew White</h2>
@@ -58,7 +52,14 @@ export default function About() {
                             <div className="bio">
                             </div>
                         </div>
-                        <h1 className="page-title">{singlePage.title}</h1>
+                        <div className="content-container">
+                            <BlockContent 
+                                className='block-content'
+                                blocks={singlePage.body}
+                                projectID="2echsd1t"
+                                dataset="production"
+                            />
+                        </div>
                     </div>
                 </section>
             </main>
