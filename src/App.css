@@ -726,6 +726,7 @@ section {
 	}
 
 	.contact-form {
+		z-index: 0;
 		padding: 8vw 1rem 1rem 1rem;
 	}
 
