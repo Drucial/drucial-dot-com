@@ -37,7 +37,7 @@ export default function Journal({ toggle, style }) {
               const dateArr = post.publishedOn.split('-');
               return(`${dateArr[1]}.${dateArr[2]}.${dateArr[0]}`)
             })()}</p>
-                  <div className="flex-container">
+                  <div className="flex-container flex-between">
                     <h3 className="post-preview-title"><span className='post-number'>{post.postNumber}\</span>{post.title}</h3>
                     <h4 className='post-link'>Read &gt;&gt;</h4>
                   </div>

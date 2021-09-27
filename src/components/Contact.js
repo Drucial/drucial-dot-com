@@ -31,16 +31,15 @@ export default function About() {
     return (
         <main>
             <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
-                <div className="container-left form-wrapper">
+                <div className="container-full flex-container flex-center">
                     <form className="contact-form" action="">
-                        <div className="form-header">
-                            <h2>{singlePage.sideHeading}</h2>
-                            <BlockContent
-                                blocks={singlePage.sideBar}
-                                projectID="2echsd1t"
-                                dataset="production"
-                            />
-                        </div>
+                        <h2>{singlePage.sideHeading}</h2>
+                        <BlockContent
+                            className="contact-block"
+                            blocks={singlePage.sideBar}
+                            projectID="2echsd1t"
+                            dataset="production"
+                        />
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" />
                         <label htmlFor="email">Email</label>
@@ -50,13 +49,10 @@ export default function About() {
                         <div className="btn-container">
                             <button className="submit-button" >Send</button>
                         </div>
+                        <div className="contact-title">
+                            <h1 className="vertical-title">{singlePage.title}</h1>
+                        </div>
                     </form>
-                </div>
-                <div className="container-right post-right">
-                    <SocialNav />
-                    <div className="text-container light-title post-title-mobile">
-                        <h1 className="hero-title vertical">{singlePage.title}</h1>
-                    </div>
                 </div>
             </section>
         </main>

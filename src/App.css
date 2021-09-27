@@ -64,6 +64,7 @@ button {
 
 a:hover,
 a:focus,
+a:active,
 .nav-link:hover,
 .nav-link:focus {
 	color: var(--color-accent600);
@@ -91,7 +92,7 @@ nav {
 	display: grid;
 	grid-template-columns: 7fr minmax(320px, 3fr);
 	background: var(--color-light);
-	z-index: 1;
+	z-index: 2;
 }
 
 .logo-container {
@@ -146,7 +147,8 @@ nav {
 }
 
 .nav-link:hover::after,
-.nav-link:focus::after {
+.nav-link:focus::after,
+.nav-link:active::after {
 	width: 100%;
 }
 
@@ -313,8 +315,15 @@ section {
 
 .flex-container {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.flex-between {
+	justify-content: space-between;
 }
 
 .content-container {
@@ -484,6 +493,7 @@ section {
 /*  */
 /* ABOUT PAGE STYLES */
 /*  */
+
 .profile-container {
 	text-align: center;
 	background: var(--color-light);
@@ -511,6 +521,82 @@ section {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+/*  */
+/* CONTACT PAGE STYLES */
+/*  */
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	max-width: 600px;
+	background: var(--color-light);
+	padding: 3rem 2rem;
+	position: relative;
+	z-index: 1;
+}
+
+.contact-form h2{
+	color: var(--color-accent200);
+}
+
+.contact-block p {
+	margin-bottom: .5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+	font-family: var(--ff-body);
+	font-size: 14px;
+	padding: .5rem;
+	border: 1px solid var(--color-medium);
+	background: var(--color-medium200);
+}
+
+.contact-form textarea {
+	resize: none;
+}
+
+.btn-container {
+	display: flex;
+	justify-content: center;
+}
+
+.submit-button {
+	background: var(--color-light);
+	border: 2px solid;
+	padding: .5rem 2rem;
+	cursor: pointer;
+}
+
+.submit-button:hover,
+.submit-button:focus {
+	color: var(--color-light);
+	background: var(--color-accent200);
+}
+
+.contact-title {
+	position: absolute;
+	left: 100%;
+	top: 0;
+	bottom: 0;
+	width: 125px;
+	z-index: -1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: var(--color-accent200)
+}
+
+.vertical-title {
+	color: var(--color-light);
+	font-size: clamp(3.2rem, 18vw + .3rem, 6.5rem);
+	line-height: .9;
+	width: max-content;
+	transform: rotate(90deg);
 }
 
 /*  */
@@ -636,5 +722,25 @@ section {
 		padding: .5rem .5rem;
 		background: rgb(252 252 252 / .8);
 		backdrop-filter: blur(.2rem);
+	}
+
+	.contact-form {
+		padding: 8vw 1rem 1rem 1rem;
+	}
+
+	.contact-title {
+		width: auto;
+		height: max-content;
+		top: 0;
+		bottom: 100%;
+		left: 0;
+		right: 0;
+		background: none;
+	}
+
+	.vertical-title {
+		color: var(--color-dark);
+		opacity: .075;
+		transform: rotate(0deg);
 	}
 }
