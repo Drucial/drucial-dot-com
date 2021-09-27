@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Media from 'react-media';
 import sanityClient from '../client';
 import SocialNav from './SocialNav'
 import ScrollNav from './ScrollNav'
@@ -7,6 +8,7 @@ import ScrollNav from './ScrollNav'
 export default function Home() {
   const [allPostsData, setAllPosts] = useState(null);
   const mainRef = useRef();  
+  const scrollRef = useRef();
 
   // Section Title Offset Color
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function Home() {
     }, [allPostsData])
 // Scroll Nav Widget Controls
   useEffect(() => {
-    if (!mainRef.current) return;
+    if (!scrollRef.current) return;
     
     const scrollNav = document.querySelector(".scroll-nav");
     const main = document.querySelector("main");
@@ -96,8 +98,18 @@ export default function Home() {
 
   return (
     <>
-    <SocialNav />
-    <ScrollNav />
+    <Media query="(max-width: 860px)">
+      {matches =>
+        matches ? (
+          <></>
+        ) : (
+          <>
+          <SocialNav />
+          <ScrollNav ref={scrollRef}/>
+          </>
+        )
+      }
+    </Media>
     <main ref={mainRef}>
       {allPostsData &&
       allPostsData.map((post, index) => (

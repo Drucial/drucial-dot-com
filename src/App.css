@@ -107,6 +107,7 @@ nav {
 
 .logo {
 	font-size: 3rem;
+	font-weight: 300;
 	line-height: 1;
 	transition: color 150ms ease-in-out;
 	user-select: none;
@@ -473,7 +474,6 @@ section {
 
 .single-post-title {
 	font-size: clamp(2rem, 10vw + .3rem, 5.5rem);
-	font-weight: 600;
 	line-height: 1;
 }
 
@@ -585,7 +585,7 @@ section {
 		position: absolute;
 		background: var(--color-dark);
 		right: 0;
-		height: 3px;
+		height: 2px;
 	}
 
 	.hamburger::before {

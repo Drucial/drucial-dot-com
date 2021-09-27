@@ -97,7 +97,7 @@ const Nav = () => {
                                 }
                             </Transition>
                         </ul>
-                    )
+                        )
                 }
             </Media>
         </nav>
