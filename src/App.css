@@ -45,7 +45,7 @@ h2,
 h3,
 h4 {
 	font-family: var(--ff-headings);
-	font-weight: 300;
+	font-weight: 400;
 	text-rendering: optimizeLegibility;
 	text-transform: uppercase;
 	color: var(--color-dark);
@@ -168,7 +168,8 @@ nav {
 		rgb(252 252 252 / 1),
 		rgb(252 252 252 / 0.75)
 	);
-	backdrop-filter: blur(0.5em);
+	backdrop-filter: blur(.2rem);
+	-webkit-backdrop-filter: blur(0.5em);
 	border-left: none;
 	overflow-x: hidden;
 }
@@ -198,6 +199,7 @@ nav {
 
 .journal-link:hover {
 	backdrop-filter: blur(.2rem);
+	-webkit-backdrop-filter: blur(.2rem);
 }
 
 .journal-preview:hover::after,
@@ -308,6 +310,7 @@ section {
 		var(--color-light) 90%
 	);
 	backdrop-filter: blur(0.5em);
+	-webkit-backdrop-filter: blur(.5rem);
 }
 
 .container-full {
@@ -465,6 +468,7 @@ section {
 	padding: 1rem 2rem;
 	mix-blend-mode: screen;
 	backdrop-filter: blur(.5em);
+	-webkit-backdrop-filter: blur(.5em);
 }
 
 .single-post-title {
