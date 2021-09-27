@@ -12,15 +12,17 @@ export default function Home() {
   useEffect(() => {
     function setTitleColorOffset() {
       if (!mainRef.current) return;
-
       let descriptions = mainRef.current.querySelectorAll(".container-right");
-
-      for (let i = 0; i < descriptions.length; i++) {
-        const title = descriptions[i].querySelector('.post-title');
-        const descWidth = descriptions[i].offsetWidth
-        const titleOffset = title.offsetWidth - descWidth + 30;
-
-        title.style.backgroundImage = `linear-gradient(90deg, var(--color-light)${titleOffset}px, var(--color-dark)${titleOffset}px)`;
+      if(window.innerWidth <= 860) {
+        return
+      } else {
+        for (let i = 0; i < descriptions.length; i++) {
+          const title = descriptions[i].querySelector('.post-title');
+          const descWidth = descriptions[i].offsetWidth
+          const titleOffset = title.offsetWidth - descWidth + 30;
+  
+          title.style.backgroundImage = `linear-gradient(90deg, var(--color-light)${titleOffset}px, var(--color-dark)${titleOffset}px)`;
+        }
       }
     }
 

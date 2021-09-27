@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Slab:wght@200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto+Slab:wght@200;300&display=swap');
 
 /*  */
 /* DOCUMENT STYLES */
@@ -31,6 +31,7 @@ p,
 a,
 button {
 	font-family: var(--ff-body);
+	font-weight: 300;
 	font-size: var(--fs-100);
 	color: var(--color-darker);
 }
@@ -44,6 +45,8 @@ h2,
 h3,
 h4 {
 	font-family: var(--ff-headings);
+	font-weight: 300;
+	text-rendering: optimizeLegibility;
 	text-transform: uppercase;
 	color: var(--color-dark);
 }
@@ -465,7 +468,8 @@ section {
 }
 
 .single-post-title {
-	font-size: clamp(2rem, 10vw + .5rem, 5.5rem);
+	font-size: clamp(2rem, 10vw + .3rem, 5.5rem);
+	font-weight: 600;
 	line-height: 1;
 }
 
@@ -650,6 +654,7 @@ section {
 	.post-title {
 		font-size: 11vw;
 		margin: 0;
+		-webkit-text-fill-color: var(--color-dark);
 	}
 
 	.post-number {
