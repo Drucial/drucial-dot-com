@@ -8,9 +8,9 @@ import ScrollNav from './ScrollNav'
 export default function Home() {
   const [allPostsData, setAllPosts] = useState(null);
   const mainRef = useRef();  
-  const scrollRef = useRef();
-
-  // Section Title Offset Color
+// 
+// Section Title Offset Color
+// 
   useEffect(() => {
     function setTitleColorOffset() {
       if (!mainRef.current) return;
@@ -31,31 +31,31 @@ export default function Home() {
       setTitleColorOffset()
       window.addEventListener('resize', setTitleColorOffset)
     }, [allPostsData])
+// 
 // Scroll Nav Widget Controls
+// 
   useEffect(() => {
-    if (!scrollRef.current) return;
-    
-    const scrollNav = document.querySelector(".scroll-nav");
-    const main = document.querySelector("main");
-    const sections = document.querySelectorAll("section");
-    const scrollText = document.querySelector(".scroll-text");
-    let isScrolling;
+    if (!mainRef.current) return;
 
-    function mainScroll() {
-      let scrollPos = main.scrollHeight - main.scrollTop - main.clientHeight;
-      if (scrollPos >= main.scrollHeight / sections.length) {
-        main.scrollBy(0, 200);
-      } else {
-        main.scrollTo(0, 0);
-      }
-    }
+    if(window.innerWidth < 860) {
+      return;
+    } else {
+      const scrollNav = document.querySelector(".scroll-nav");
+      const main = document.querySelector("main");
+      const sections = document.querySelectorAll("section");
+      const scrollText = document.querySelector(".scroll-text");
+      let isScrolling;
 
-    scrollNav.addEventListener("click", () => {
-      mainScroll();
-    });
+      function mainScroll() {
+        let scrollPos = main.scrollHeight - main.scrollTop - main.clientHeight;
+        if (scrollPos >= main.scrollHeight / sections.length) {
+          main.scrollBy(0, 200);
+        } else {
+          main.scrollTo(0, 0);
+        }
+      };
 
-    main.addEventListener("scroll",(event) => {
-        window.clearTimeout(isScrolling);
+      function scrollTextUpdate() {
         isScrolling = setTimeout(() => {
           let scrollPos = main.scrollHeight - main.scrollTop - main.clientHeight;
           if (scrollPos >= main.scrollHeight / sections.length) {
@@ -66,11 +66,20 @@ export default function Home() {
             document.querySelector(".chevron").classList.add("top");
           }
         }, 100);
-      },
-      false
-    );
+      };
+
+      scrollNav.addEventListener("click", mainScroll);
+      main.addEventListener("scroll",() => {
+          window.clearTimeout(isScrolling);
+          scrollTextUpdate()
+        },
+          false
+        );
+    }
   }, [allPostsData])
+// 
 // Content Import
+// 
   useEffect(() => {
     sanityClient
       .fetch(
@@ -105,7 +114,7 @@ export default function Home() {
         ) : (
           <>
           <SocialNav />
-          <ScrollNav ref={scrollRef}/>
+          <ScrollNav />
           </>
         )
       }
@@ -127,7 +136,7 @@ export default function Home() {
             })()}</p>
               <p className='post-desc'>{post.excerpt}</p>
               <Link to={'/' + post.slug.current} key={post.slug.current} className="post-link">
-                Keep Reading >>
+                Keep Reading &gt;&gt;
                 </Link>
               <h2 className="post-title">{post.title}<span className="post-number">/{post.postNumber}</span></h2>
             </div>

@@ -436,6 +436,7 @@ section {
 	margin: 0rem 0.75rem 0rem 0;
 	line-height: 1;
 	z-index: 1;
+	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	user-select: none;
@@ -576,7 +577,7 @@ section {
 		height: 45px;
 		position: relative;
 		z-index: 1;
-		background: var(--color-light;)
+		background: var(--color-light);
 	}
 
 	.hamburger::before,
