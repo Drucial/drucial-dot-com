@@ -103,7 +103,7 @@ export default function Home() {
       .catch(console.error);
   }, []);
 
-  if (!allPostsData) return <div className="loading">loading....</div>
+  if (!allPostsData) return ""
 
   return (
     <>

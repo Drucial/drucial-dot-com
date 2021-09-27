@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client'
 import BlockContent from "@sanity/block-content-to-react"
+import Wheel from '../images/loading.png'
 
 export default function JournalPost() {
   const [singlePost, setSinglePost] = useState(null)
@@ -41,8 +42,7 @@ export default function JournalPost() {
     .catch(console.error)
   }, [slug]);
   
-
-  if (!singlePost) return <div className="loading">loading....</div>
+  if (!singlePost) return ""
 
   return (
     <main>

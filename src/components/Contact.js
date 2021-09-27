@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import sanityClient from '../client'
 import BlockContent from "@sanity/block-content-to-react"
 
+
 export default function About() {
     const [singlePage, setSinglePage] = useState(null)
 
@@ -25,8 +26,7 @@ export default function About() {
         .catch(console.error)
     }, []);
     
-    if (!singlePage) return <div>loading....</div>
-
+    if (!singlePage) return ""
     return (
         <main>
             <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>

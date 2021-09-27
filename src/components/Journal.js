@@ -26,6 +26,9 @@ export default function Journal({ toggle, style }) {
       .then((data) => setAllPosts(data))
       .catch(console.error);
   }, []);
+
+  if (!allPostsData) return ""
+
   return (
     <animated.div className="journal-container" style={style}>
       {allPostsData &&

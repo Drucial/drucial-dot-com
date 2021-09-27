@@ -58,8 +58,8 @@ export default function About() {
         .catch(console.error)
     }, []);
     
-    if (!singlePage) return <div className="loading">loading....</div>
-    if (!author) return <div className="loading">loading....</div>
+    if (!singlePage) return ""
+    if (!author) return ""
 
     return (
         <>
