@@ -1,14 +1,27 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Media from 'react-media';
+import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from '../client';
 import SocialNav from './SocialNav'
 import ScrollNav from './ScrollNav'
 
 export default function Home() {
   const [allPostsData, setAllPosts] = useState(null);
+  const [home, setHome] = useState(null);
   const mainRef = useRef();  
-// 
+
+//   const fadeDown = useSpring({ 
+//     to: { transform: 'translateY(0%)', opacity: 1 }, 
+//     from: { transform: 'translateY(-50%)', opacity: 0 } 
+//   })
+//   const fade = useSpring({ 
+//     to: { transform: 'translateY(0%)', opacity: 1 }, 
+//     from: { transform: 'translateY(-10%)', opacity: 0 }, 
+//     delay: 300, 
+//     config: { duration: 400 }
+//   })
+// // 
 // Section Title Offset Color
 // 
   useEffect(() => {
@@ -30,7 +43,7 @@ export default function Home() {
 
       setTitleColorOffset()
       window.addEventListener('resize', setTitleColorOffset)
-    }, [allPostsData])
+    }, [allPostsData, home])
 // 
 // Scroll Nav Widget Controls
 // 
@@ -58,14 +71,19 @@ export default function Home() {
       function scrollTextUpdate() {
         isScrolling = setTimeout(() => {
           let scrollPos = main.scrollHeight - main.scrollTop - main.clientHeight;
-          if (scrollPos >= main.scrollHeight / sections.length) {
+          if(main.scrollTop === 0){
+            scrollNav.classList.add("scroll-middle")
+            scrollText.innerText = "Journals";
+            document.querySelector(".chevron").classList.remove("top");
+          }else if (scrollPos >= main.scrollHeight / sections.length) {
+            scrollNav.classList.remove("scroll-middle")
             scrollText.innerText = "Next";
             document.querySelector(".chevron").classList.remove("top");
           } else {
             scrollText.innerText = "Top";
             document.querySelector(".chevron").classList.add("top");
           }
-        }, 100);
+        }, 10);
       };
 
       scrollNav.addEventListener("click", mainScroll);
@@ -76,7 +94,7 @@ export default function Home() {
           false
         );
     }
-  }, [allPostsData])
+  }, [allPostsData, home])
 // 
 // Content Import
 // 
@@ -102,8 +120,35 @@ export default function Home() {
       .then((data) => setAllPosts(data))
       .catch(console.error);
   }, []);
+  
+  useEffect(() => {
+    sanityClient.fetch(`*[slug.current == "welcome"]{
+        title,
+        _id,
+        slug,
+        mainImage{
+            asset->{
+            _id,
+            url
+            }
+        },
+        subImage{
+            asset->{
+            _id,
+            url
+            }
+        },
+        body,
+        sideHeading,
+        sideBar,
+    }`
+    )
+    .then((data) => setHome(data[0]))
+    .catch(console.error)
+  }, []);
 
   if (!allPostsData) return ""
+  if (!home) return ""
 
   return (
     <>
@@ -120,6 +165,18 @@ export default function Home() {
       }
     </Media>
     <main ref={mainRef}>
+      <section className="home-section" style={{ backgroundImage: 'url(' + home.mainImage.asset.url + ')'}}>
+        <div className="container-full home-container">
+          <div className="flex-container flex-center flex-full flex-column">
+            <BlockContent
+              className='home-block'
+              blocks={home.body}
+              projectID="2echsd1t"
+              dataset="production"
+            />
+          </div>
+        </div>
+      </section>
       {allPostsData &&
       allPostsData.map((post, index) => (
         <section className="home-section" key={index} style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>

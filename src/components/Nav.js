@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Media from 'react-media';
-import { Transition, animated } from 'react-spring'
+import { Transition, useSpring, animated } from 'react-spring'
 import Journal from './Journal';
 
 const Nav = () => {
     const [showJournal, setShowJournal] = useState(false)
     const [showNav, setShowNav] = useState(false)
+
+    const dropDown = useSpring({ to: { transform: 'translateY(0%)' }, from: { transform: 'translateY(-100%)' }, config: { duration: 500 } })
 
     const menuToggle = () => {
         showNav === false ? setShowNav(true) : setShowNav(false)
@@ -32,7 +34,7 @@ const Nav = () => {
     };
 
     return (
-        <nav onClick={closeJournal}>
+        <animated.nav style={dropDown} onClick={closeJournal}>
             <div className="logo-container">
                 <Link to='/' className='logo-link' onClick={closeNav}>
                     <h3 className="logo">DRUCIAL</h3>
@@ -100,7 +102,7 @@ const Nav = () => {
                         )
                 }
             </Media>
-        </nav>
+        </animated.nav>
     )
 }
 

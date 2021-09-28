@@ -5,6 +5,8 @@ import sanityClient from "../client";
 
 export default function Journal({ toggle, style }) {
   const [allPostsData, setAllPosts] = useState(null);
+
+
   useEffect(() => {
     sanityClient
       .fetch(

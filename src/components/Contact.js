@@ -7,7 +7,7 @@ export default function About() {
     const [singlePage, setSinglePage] = useState(null)
 
     useEffect(() => {
-        sanityClient.fetch(`*[slug.current == "contact"]{
+        sanityClient.fetch(`*[slug.current == 'contact']{
             title,
             _id,
             slug,
@@ -27,11 +27,12 @@ export default function About() {
     }, []);
     
     if (!singlePage) return ""
+
     return (
         <main>
             <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
                 <div className="container-full flex-container flex-center">
-                    <form className="contact-form" action="">
+                    <form  className="contact-form" action="">
                         <h2>{singlePage.sideHeading}</h2>
                         <BlockContent
                             className="contact-block"
