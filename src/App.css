@@ -691,6 +691,11 @@ section {
 		padding: 0.5rem 1rem;
 		background: var(--color-light);
 	}
+
+	.logo {
+		font-size: 2rem;
+	}
+
 	.nav-links {
 		position: absolute;
 		width: 100%;
@@ -726,6 +731,10 @@ section {
 
 	.mobile-image {
 		display: block;
+	}
+
+	.header-image {
+		min-height: 40vh;
 	}
 
 	.container-right {
@@ -786,6 +795,7 @@ section {
 		left: 0;
 		right: 0;
 		background: none;
+		border: 1px solid black;
 	}
 
 	.vertical-title {
