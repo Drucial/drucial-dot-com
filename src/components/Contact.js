@@ -5,8 +5,6 @@ import sanityClient from '../client'
 
 export default function Contact() {
     const [singlePage, setSinglePage] = useState(null)
-
-    console.log(window.location.pathname)
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
             title,
