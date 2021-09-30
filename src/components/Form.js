@@ -3,14 +3,14 @@ import sanityClient from '../client'
 import BlockContent from "@sanity/block-content-to-react"
 
 
-export default function Form( props ) {
+export default function Form() {
     const [singlePage, setSinglePage] = useState(null);
     const nameRef = useRef();
     const mailRef = useRef();
     const messageRef = useRef();
 // 
 // Form Validation
-// console.log
+// 
     const valName = () => {
         if( document.contactForm.Name.value === "" ) {
             nameRef.current.innerHTML = "Name <em style='color: #a1210d'>* Please provide your name</em>"
@@ -55,10 +55,6 @@ export default function Form( props ) {
         document.contactForm.submit()
     }
 
-    // const handleSubmit = () => {
-    //     props.func(true)
-    // }
-
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
             title,
@@ -83,7 +79,7 @@ export default function Form( props ) {
 
     return (
         <>
-            <form  className="contact-form" name="contactForm" method="post">
+            <form  className="contact-form" name="contactForm" method="POST" action="/contact/success">
                 <h2>{singlePage.sideHeading}</h2>
                 <BlockContent
                     className="contact-block"

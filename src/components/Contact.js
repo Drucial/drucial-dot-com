@@ -5,12 +5,8 @@ import sanityClient from '../client'
 
 export default function Contact() {
     const [singlePage, setSinglePage] = useState(null)
-    const [formSubmit, setFormSubmit] = useState(false)
 
-    const setState = (value) => {
-        console.log('form submitted')
-        setFormSubmit(value)
-    }
+    console.log(window.location.pathname)
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
             title,
@@ -37,7 +33,7 @@ export default function Contact() {
         <main>
             <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
                 <div className="container-full flex-container flex-center">
-                    {formSubmit === false ? <Form func={setState} />
+                    {window.location.pathname === '/contact' ? <Form />
                     : <div className="confirmation">
                         <h2>Thanks for Writing Me!</h2>
                         <p>I'll be in touch</p>
