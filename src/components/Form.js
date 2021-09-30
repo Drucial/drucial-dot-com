@@ -4,14 +4,13 @@ import BlockContent from "@sanity/block-content-to-react"
 
 
 export default function Form( props ) {
-    const [singlePage, setSinglePage] = useState(null)
-    const formRef = useRef();
+    const [singlePage, setSinglePage] = useState(null);
     const nameRef = useRef();
     const mailRef = useRef();
     const messageRef = useRef();
 // 
 // Form Validation
-// 
+// console.log
     const valName = () => {
         if( document.contactForm.Name.value === "" ) {
             nameRef.current.innerHTML = "Name <em style='color: #a1210d'>* Please provide your name</em>"
@@ -43,7 +42,7 @@ export default function Form( props ) {
         return( true )
     }
 
-    const validate = (event) => {
+    const validate = () => {
         if( valName() === false ) {
             return;
         } 
@@ -52,22 +51,13 @@ export default function Form( props ) {
         }
         else if( valMessage() === false ) {
             return;
-        } 
-        handleSubmit(event)
+        }
+        document.contactForm.submit()
     }
 
-    
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        let myForm = formRef.current;
-        let formData = new FormData(myForm)
-        fetch('/', {
-            method: 'POST',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString()
-        }).then(() => props.func(true)).catch((error) =>
-        alert(error))
-    }
+    // const handleSubmit = () => {
+    //     props.func(true)
+    // }
 
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
@@ -93,7 +83,7 @@ export default function Form( props ) {
 
     return (
         <>
-            <form  className="contact-form" name="contactForm" data-netlify="true">
+            <form  className="contact-form" name="contactForm" method="post">
                 <h2>{singlePage.sideHeading}</h2>
                 <BlockContent
                     className="contact-block"
@@ -101,9 +91,10 @@ export default function Form( props ) {
                     projectID="2echsd1t"
                     dataset="production"
                 />
+                <input type="hidden" name="form-name" value="Contact Form" />
                 <label ref={nameRef}htmlFor="Name">Name</label>
                 <input type="text" name="Name" />
-                <label ref={mailRef}htmlFor="email">Email</label>
+                <label ref={mailRef}htmlFor="eMail">Email</label>
                 <input type="eMail" name="eMail" />
                 <label ref={messageRef}htmlFor="Message">Message</label>
                 <textarea type="text" name="Message" rows="8" />
