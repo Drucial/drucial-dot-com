@@ -87,6 +87,7 @@ export default function Form() {
                     projectID="2echsd1t"
                     dataset="production"
                 />
+                <a href="/contact/success">Success</a>
                 <input type="hidden" name="form-name" value="Contact Form" />
                 <label ref={nameRef}htmlFor="Name">Name</label>
                 <input type="text" name="Name" />
