@@ -22,9 +22,9 @@ export default function Form() {
          return( true )
     } 
     const valEmail = () => {
-        if( document.contactForm.eMail.value === "" ) {
+        if( document.contactForm.Email.value === "" ) {
             mailRef.current.innerHTML = "Email <em style='color: #a1210d'>* Please provide your email</em>"
-            document.contactForm.eMail.focus() ;
+            document.contactForm.Email.focus() ;
             return false;
         } else {
             mailRef.current.innerHTML = 'Email'
@@ -91,7 +91,7 @@ export default function Form() {
                 <label ref={nameRef}htmlFor="Name">Name</label>
                 <input type="text" name="Name" />
                 <label ref={mailRef}htmlFor="eMail">Email</label>
-                <input type="eMail" name="eMail" />
+                <input type="email" name="Email" />
                 <label ref={messageRef}htmlFor="Message">Message</label>
                 <textarea type="text" name="Message" rows="8" />
                 <div className="btn-container">
