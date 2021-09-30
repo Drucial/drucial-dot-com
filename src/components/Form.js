@@ -79,7 +79,7 @@ export default function Form() {
 
     return (
         <>
-            <form  className="contact-form" name="contactForm" method="POST" action="/contact/thanks">
+            <form  className="contact-form" name="contactForm" method="POST" action="/thanks">
                 <h2>{singlePage.sideHeading}</h2>
                 <BlockContent
                     className="contact-block"
@@ -87,7 +87,6 @@ export default function Form() {
                     projectID="2echsd1t"
                     dataset="production"
                 />
-                <a href="/contact/thanks">Success</a>
                 <input type="hidden" name="form-name" value="Contact Form" />
                 <label ref={nameRef}htmlFor="Name">Name</label>
                 <input type="text" name="Name" />

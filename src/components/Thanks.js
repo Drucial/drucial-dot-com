@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Form from './Form';
 import sanityClient from '../client'
 
 
@@ -31,10 +30,12 @@ export default function Contact() {
         <main>
             <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
                 <div className="container-full flex-container flex-center">
-                    <Form />
+                    <div className="confirmation">
+                        <h2>Thanks for Writing Me!</h2>
+                        <p>I'll be in touch</p>
+                    </div>
                 </div>
             </section>
         </main>
     )
 }
-
