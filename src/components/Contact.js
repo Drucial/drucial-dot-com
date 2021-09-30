@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import Form from './Form';
 import sanityClient from '../client'
-import BlockContent from "@sanity/block-content-to-react"
 
 
-export default function About() {
+export default function Contact() {
     const [singlePage, setSinglePage] = useState(null)
+    const [formSubmit, setFormSubmit] = useState(false)
 
+    const setState = (value) => {
+        console.log('form submitted')
+        setFormSubmit(value)
+    }
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
             title,
@@ -32,27 +37,12 @@ export default function About() {
         <main>
             <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
                 <div className="container-full flex-container flex-center">
-                    <form  className="contact-form" action="">
-                        <h2>{singlePage.sideHeading}</h2>
-                        <BlockContent
-                            className="contact-block"
-                            blocks={singlePage.sideBar}
-                            projectID="2echsd1t"
-                            dataset="production"
-                        />
-                        <label htmlFor="name">Name</label>
-                        <input type="text" name="name" />
-                        <label htmlFor="email">Email</label>
-                        <input type="text" name="email" />
-                        <label htmlFor="message">Message</label>
-                        <textarea type="text" name="message" rows="8" />
-                        <div className="btn-container">
-                            <button className="submit-button" >Send</button>
-                        </div>
-                        <div className="contact-title">
-                            <h1 className="vertical-title">{singlePage.title}</h1>
-                        </div>
-                    </form>
+                    {formSubmit === false ? <Form func={setState} />
+                    : <div className="confirmation">
+                        <h2>Thanks for Writing Me!</h2>
+                        <p>I'll be in touch</p>
+                    </div>
+                    }
                 </div>
             </section>
         </main>
