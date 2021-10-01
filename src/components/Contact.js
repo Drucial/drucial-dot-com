@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Form from './Form';
+import Form from './ContactForm';
 import sanityClient from '../client'
 
 
