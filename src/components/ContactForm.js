@@ -11,12 +11,11 @@ const encode = (data) => {
 export default function Form() {
     const [singlePage, setSinglePage] = useState(null);
     const [newForm, setNewForm] = useState(null);
+    const [success, setSuccess] = useState(false)
     const { Name, Email, Message } = {}
     const nameRef = useRef();
     const mailRef = useRef();
     const messageRef = useRef();
-
-    console.log(newForm)
 // 
 // Form Validation
 // 
@@ -81,7 +80,7 @@ export default function Form() {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: encode({ "form-name": "Contact Form", ...newForm })
         })
-          .then(() => alert("Success!"))
+          .then(() => setSuccess(true))
           .catch(error => alert(error));
     };
     
@@ -109,6 +108,7 @@ export default function Form() {
 
     return (
         <>
+        {success === false ?
             <form  className="contact-form" name="contactForm" method="POST" action="/thanks">
                 <h2>{singlePage.sideHeading}</h2>
                 <BlockContent
@@ -131,6 +131,12 @@ export default function Form() {
                     <h1 className="vertical-title">{singlePage.title}</h1>
                 </div>
             </form> 
+            : 
+            <div className="confirmation">
+                <h2>Thanks for Writing Me!</h2>
+                <p>I'll be in touch</p>
+            </div>
+        }
         </>
     )
 }
