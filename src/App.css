@@ -497,12 +497,11 @@ section {
 	transform: rotate(225deg) translate(-50%, -50%);
 }
 
-.mobile-image {
+.main-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: 25% center;
-	display: none;
+	object-position: center center;
 }
 
 .post-image-link {
@@ -733,10 +732,6 @@ section {
 
 	.social-nav {
 		display: none;
-	}
-
-	.mobile-image {
-		display: block;
 	}
 
 	.header-image {

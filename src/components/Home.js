@@ -5,24 +5,23 @@ import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from '../client';
 import SocialNav from './SocialNav'
 import ScrollNav from './ScrollNav'
+import imageUrlBuilder from '@sanity/image-url'
+
+const builder = imageUrlBuilder(sanityClient)
+
+// Then we like to make a simple function like this that gives the
+// builder an image and returns the builder for you to specify additional
+// parameters:
+function urlFor(source) {
+  return builder.image(source)
+}
 
 export default function Home() {
   const [allPostsData, setAllPosts] = useState(null);
   const [home, setHome] = useState(null);
   const mainRef = useRef();  
-
-//   const fadeDown = useSpring({ 
-//     to: { transform: 'translateY(0%)', opacity: 1 }, 
-//     from: { transform: 'translateY(-50%)', opacity: 0 } 
-//   })
-//   const fade = useSpring({ 
-//     to: { transform: 'translateY(0%)', opacity: 1 }, 
-//     from: { transform: 'translateY(-10%)', opacity: 0 }, 
-//     delay: 300, 
-//     config: { duration: 400 }
-//   })
-// // 
-// Section Title Offset Color
+// 
+// Set Title Color Offset
 // 
   useEffect(() => {
     function setTitleColorOffset() {
@@ -165,7 +164,7 @@ export default function Home() {
       }
     </Media>
     <main ref={mainRef}>
-      <section className="home-section" style={{ backgroundImage: 'url(' + home.mainImage.asset.url + ')'}}>
+      <section className="home-section" style={{ backgroundImage: 'url(' + urlFor(home.mainImage).auto('format').fit('min').url() + ')'}}>
         <div className="container-full home-container">
           <div className="flex-container flex-center flex-full flex-column">
             <BlockContent
@@ -179,10 +178,19 @@ export default function Home() {
       </section>
       {allPostsData &&
       allPostsData.map((post, index) => (
-        <section className="home-section" key={index} style={{ backgroundImage: 'url(' + post.mainImage.asset.url + ')'}}>
+        <section className="home-section" key={index} >
           <div className="container-left">
             <Link to={'/' + post.slug.current} key={post.slug.current} className="post-image-link">
-              <img className="mobile-image" src={post.mainImage.asset.url} alt={post.imageAlt}/>
+            <Media query="(max-width: 860px)">
+              {matches =>
+                matches ? (
+                  <img className="main-image" src={urlFor(post.mainImage).width(860).auto('format').url()} alt={post.imageAlt}/>
+                ) : (
+                  <img className="main-image" src={urlFor(post.mainImage).auto('format').url()} alt={post.imageAlt}/>
+                )
+              }
+            </Media>
+              
             </Link>
           </div>
           <div className="container-right">

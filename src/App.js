@@ -5,7 +5,6 @@ import Nav from './components/Nav';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
-import Thanks from './components/Thanks'
 import JournalPost from './components/JournalPost';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -18,7 +17,6 @@ const App = () => {
           <Route path='/' exact component={Home} />
           <Route path='/about' component={About} />
           <Route path='/contact' component={Contact} />
-          <Route path='/thanks' component={Thanks} />
           <Route path="/:slug" component={JournalPost} />
         </Switch>
       </div>
