@@ -1,35 +1,32 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Media from 'react-media';
-import BlockContent from "@sanity/block-content-to-react"
-import sanityClient from '../client';
 import SocialNav from './SocialNav'
 import ScrollNav from './ScrollNav'
+import sanityClient from '../client';
 import imageUrlBuilder from '@sanity/image-url'
+import BlockContent from "@sanity/block-content-to-react"
 
 const builder = imageUrlBuilder(sanityClient)
 
-// Then we like to make a simple function like this that gives the
-// builder an image and returns the builder for you to specify additional
-// parameters:
 function urlFor(source) {
   return builder.image(source)
 }
 
-export default function Home() {
+export default function Home({ isMobile }) {
   const [allPostsData, setAllPosts] = useState(null);
   const [home, setHome] = useState(null);
-  const mainRef = useRef();  
+  const mainRef = useRef();
 // 
 // Set Title Color Offset
 // 
   useEffect(() => {
+    
     function setTitleColorOffset() {
       if (!mainRef.current) return;
-      let descriptions = mainRef.current.querySelectorAll(".container-right");
-      if(window.innerWidth <= 860) {
+      if(isMobile === true) {
         return
       } else {
+        let descriptions = mainRef.current.querySelectorAll(".container-right");
         for (let i = 0; i < descriptions.length; i++) {
           const title = descriptions[i].querySelector('.post-title');
           const descWidth = descriptions[i].offsetWidth
@@ -38,64 +35,15 @@ export default function Home() {
           title.style.backgroundImage = `linear-gradient(90deg, var(--color-light)${titleOffset}px, var(--color-dark)${titleOffset}px)`;
         }
       }
-    }
-
-      setTitleColorOffset()
-      window.addEventListener('resize', setTitleColorOffset)
-    }, [allPostsData, home])
+    };
+    setTitleColorOffset();
+    window.addEventListener('resize', setTitleColorOffset);
+    return function cleanupListener() {
+      window.removeEventListener('resize', setTitleColorOffset)
+    };
+  }, [allPostsData, home, isMobile]);
 // 
-// Scroll Nav Widget Controls
-// 
-  useEffect(() => {
-    if (!mainRef.current) return;
-
-    if(window.innerWidth < 860) {
-      return;
-    } else {
-      const scrollNav = document.querySelector(".scroll-nav");
-      const main = document.querySelector("main");
-      const sections = document.querySelectorAll("section");
-      const scrollText = document.querySelector(".scroll-text");
-      let isScrolling;
-
-      function mainScroll() {
-        let scrollPos = main.scrollHeight - main.scrollTop - main.clientHeight;
-        if (scrollPos >= main.scrollHeight / sections.length) {
-          main.scrollBy(0, 200);
-        } else {
-          main.scrollTo(0, 0);
-        }
-      };
-
-      function scrollTextUpdate() {
-        isScrolling = setTimeout(() => {
-          let scrollPos = main.scrollHeight - main.scrollTop - main.clientHeight;
-          if(main.scrollTop === 0){
-            scrollNav.classList.add("scroll-middle")
-            scrollText.innerText = "Journals";
-            document.querySelector(".chevron").classList.remove("top");
-          }else if (scrollPos >= main.scrollHeight / sections.length) {
-            scrollNav.classList.remove("scroll-middle")
-            scrollText.innerText = "Next";
-            document.querySelector(".chevron").classList.remove("top");
-          } else {
-            scrollText.innerText = "Top";
-            document.querySelector(".chevron").classList.add("top");
-          }
-        }, 10);
-      };
-
-      scrollNav.addEventListener("click", mainScroll);
-      main.addEventListener("scroll",() => {
-          window.clearTimeout(isScrolling);
-          scrollTextUpdate()
-        },
-          false
-        );
-    }
-  }, [allPostsData, home])
-// 
-// Content Import
+// Fetch Client Data
 // 
   useEffect(() => {
     sanityClient
@@ -119,7 +67,7 @@ export default function Home() {
       .then((data) => setAllPosts(data))
       .catch(console.error);
   }, []);
-  
+
   useEffect(() => {
     sanityClient.fetch(`*[slug.current == "welcome"]{
         title,
@@ -151,20 +99,9 @@ export default function Home() {
 
   return (
     <>
-    <Media query="(max-width: 860px)">
-      {matches =>
-        matches ? (
-          <></>
-        ) : (
-          <>
-          <SocialNav />
-          <ScrollNav />
-          </>
-        )
-      }
-    </Media>
+    {isMobile === false ? <><ScrollNav /><SocialNav /></> : <></>}
     <main ref={mainRef}>
-      <section className="home-section" style={{ backgroundImage: 'url(' + urlFor(home.mainImage).auto('format').fit('min').url() + ')'}}>
+      <section className="home-section" style={isMobile === false ? { backgroundImage: 'url(' + urlFor(home.mainImage).width(1920).auto('format').fit('min') + ')'} : { backgroundImage: 'url(' + urlFor(home.mainImage).width(860).auto('format').fit('min') + ')'}}>
         <div className="container-full home-container">
           <div className="flex-container flex-center flex-full flex-column">
             <BlockContent
@@ -178,19 +115,10 @@ export default function Home() {
       </section>
       {allPostsData &&
       allPostsData.map((post, index) => (
-        <section className="home-section" key={index} >
+        <section className="home-section" key={index} style={isMobile === false ? { backgroundImage: 'url(' + urlFor(post.mainImage).width(1920).auto('format').fit('min') + ')'} : { backgroundImage: "none"}}>
           <div className="container-left">
             <Link to={'/' + post.slug.current} key={post.slug.current} className="post-image-link">
-            <Media query="(max-width: 860px)">
-              {matches =>
-                matches ? (
-                  <img className="main-image" src={urlFor(post.mainImage).width(860).auto('format').url()} alt={post.imageAlt}/>
-                ) : (
-                  <img className="main-image" src={urlFor(post.mainImage).auto('format').url()} alt={post.imageAlt}/>
-                )
-              }
-            </Media>
-              
+            {isMobile === false ? <></> : <img className="main-image" src={urlFor(post.mainImage).width(860).auto('format').fit('min').url()} alt={post.imageAlt}/>}
             </Link>
           </div>
           <div className="container-right">
