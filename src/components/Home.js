@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SocialNav from './SocialNav'
 import ScrollNav from './ScrollNav'
@@ -12,14 +12,14 @@ function urlFor(source) {
   return builder.image(source)
 }
 
-export default function Home({ isMobile }) {
+export default function Home({ isMobile, screenBreak }) {
   const [allPostsData, setAllPosts] = useState(null);
   const [home, setHome] = useState(null);
   const mainRef = useRef();
 // 
 // Set Title Color Offset
 // 
-  useEffect(() => {
+  useLayoutEffect(() => {
     function setTitleColorOffset() {
       if (!mainRef.current) return;
       if(isMobile === true) {
@@ -100,7 +100,7 @@ export default function Home({ isMobile }) {
     <>
     {isMobile === false ? <><ScrollNav /><SocialNav /></> : <></>}
     <main ref={mainRef}>
-      <section className="home-section" style={isMobile === false ? { backgroundImage: 'url(' + urlFor(home.mainImage).width(1920).auto('format').fit('min') + ')'} : { backgroundImage: 'url(' + urlFor(home.mainImage).width(860).auto('format').fit('min') + ')'}}>
+      <section className="home-section" style={{ backgroundImage: 'url(' + urlFor(home.mainImage).width(screenBreak).auto('format').fit('min') + ')'}}>
         <div className="container-full home-container">
           <div className="flex-container flex-center flex-full flex-column">
             <BlockContent

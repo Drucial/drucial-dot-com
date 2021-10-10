@@ -9,7 +9,7 @@ function urlFor(source) {
   return builder.image(source)
 }
 
-export default function Contact({ isMobile }) {
+export default function Contact({ isMobile, screenBreak }) {
     const [singlePage, setSinglePage] = useState(null)
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
@@ -35,7 +35,7 @@ export default function Contact({ isMobile }) {
 
     return (
         <main>
-            <section style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(860).auto('format') + ')'}}>
+            <section style={{ backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'}}>
                 <div className="container-full flex-container flex-center">
                     <Form />
                 </div>

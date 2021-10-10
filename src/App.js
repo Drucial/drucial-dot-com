@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
   const screenRef = useRef()
-  const [isMobile, setIsMobile] = useState(null)
+  const [isMobile, setIsMobile] = useState(null);
+  const screenBreak = isMobile === true ? 860 : 1920;
 
   useEffect(() => {
     if (!screenRef.current) return;
@@ -28,10 +29,10 @@ const App = () => {
       <div ref={screenRef} className="screen">
         <Nav isMobile={isMobile}/>
         <Switch>
-          <Route path='/' exact ><Home isMobile={isMobile}/></Route>
-          <Route path='/about' ><About isMobile={isMobile}/></Route>
-          <Route path='/contact' ><Contact isMobile={isMobile}/></Route>
-          <Route path="/:slug" ><JournalPost isMobile={isMobile}/></Route>
+          <Route path='/' exact ><Home isMobile={isMobile} screenBreak={screenBreak}/></Route>
+          <Route path='/about' ><About isMobile={isMobile} screenBreak={screenBreak}/></Route>
+          <Route path='/contact' ><Contact isMobile={isMobile} screenBreak={screenBreak}/></Route>
+          <Route path="/:slug" ><JournalPost isMobile={isMobile} screenBreak={screenBreak}/></Route>
         </Switch>
       </div>
     </Router>

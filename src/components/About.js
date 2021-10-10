@@ -10,7 +10,7 @@ function urlFor(source) {
   return builder.image(source)
 }
 
-export default function About({ isMobile }) {
+export default function About({ isMobile, screenBreak }) {
     const [singlePage, setSinglePage] = useState(null)
     const [author, setAuthor] = useState(null)
 // 
@@ -72,7 +72,7 @@ export default function About({ isMobile }) {
         <main>
             <section>
                 <div className="container-full">
-                    <div className="header-image" style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(860).auto('format') + ')'}} alt={singlePage.title}>
+                    <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'}} alt={singlePage.title}>
                         <div className="title-container">
                             <h1 className="single-post-title">{singlePage.title}</h1>
                         </div>
@@ -85,10 +85,10 @@ export default function About({ isMobile }) {
                             dataset="production"
                         />
                     </div>
-                    <div className="header-image" style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.subImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePage.subImage).width(860).auto('format') + ')'}} alt={singlePage.title}>
+                    <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.subImage).width(screenBreak).auto('format') + ')'}} alt={singlePage.title}>
                         <div className="profile-container">
                             <div className="profile">
-                                <img className="profile-pic" src={isMobile === false ? urlFor(author.profileImage).width(500).auto('format') : urlFor(author.profileImage).width(250).auto('format')} alt={author.profileAlt}/>
+                                <img className="profile-pic" src={urlFor(author.profileImage).width(300).auto('format')} alt={author.profileAlt}/>
                                 <div className="profile-details">
                                     <h2>{author.name}</h2>
                                     <p>{author.description}</p>

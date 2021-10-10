@@ -269,7 +269,7 @@ section {
 
 .post-date {
 	color: var(--color-accent200);
-	font-size: 1rem;
+	font-size: 1.2rem;
 }
 
 .block-content p:not(first-child),

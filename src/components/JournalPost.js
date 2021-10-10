@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client';
 import imageUrlBuilder from '@sanity/image-url';
@@ -10,9 +10,25 @@ function urlFor(source) {
   return builder.image(source)
 }
 
-export default function JournalPost({ isMobile }) {
+export default function JournalPost({ screenBreak }) {
   const [singlePost, setSinglePost] = useState(null)
   const { slug } = useParams();
+  const blockRef = useRef();
+
+  useEffect(() => {
+    if(!blockRef.current) return;
+    const img = blockRef.current.querySelectorAll('img');
+
+    function imageUrlUpdate() {
+      for(let i = 0; i < img.length; i++) {
+        const src = img[i].src;
+        const baseSrc = src.split('?')[0];
+        img[i].src = baseSrc + '?w=' + screenBreak + '&auto=format';
+      }
+    }
+    imageUrlUpdate()
+  }, [singlePost, blockRef,  screenBreak])
+
 
   useEffect(() => {
     sanityClient.fetch(`*[slug.current == '${slug}']{
@@ -54,7 +70,7 @@ export default function JournalPost({ isMobile }) {
     <main>
       <section className='post-section'>
         <div className="container-full">
-          <div className='header-image' style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(860).auto('format') + ')'}} alt={singlePost.title}>
+          <div className='header-image' style={{backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(screenBreak).auto('format') + ')'}} alt={singlePost.title}>
             <div className="title-container">
               <h1 className="single-post-title">{singlePost.title}<span className="post-number">/{singlePost.postNumber}</span></h1>
               <p className='post-date'>{(() => {
@@ -63,7 +79,7 @@ export default function JournalPost({ isMobile }) {
             })()}</p>
             </div>
           </div>
-          <div className="content-container">
+          <div ref={blockRef} className="content-container">
             <BlockContent
               className='block-content'
               blocks={singlePost.body}
