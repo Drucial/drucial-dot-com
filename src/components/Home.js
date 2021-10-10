@@ -20,7 +20,6 @@ export default function Home({ isMobile }) {
 // Set Title Color Offset
 // 
   useEffect(() => {
-    
     function setTitleColorOffset() {
       if (!mainRef.current) return;
       if(isMobile === true) {
