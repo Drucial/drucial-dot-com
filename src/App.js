@@ -31,7 +31,7 @@ const App = () => {
           <Route path='/' exact ><Home isMobile={isMobile}/></Route>
           <Route path='/about' ><About isMobile={isMobile}/></Route>
           <Route path='/contact' ><Contact isMobile={isMobile}/></Route>
-          <Route path="/:slug" component={JournalPost} />
+          <Route path="/:slug" ><JournalPost isMobile={isMobile}/></Route>
         </Switch>
       </div>
     </Router>

@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import sanityClient from '../client'
-import BlockContent from "@sanity/block-content-to-react"
+import sanityClient from '../client';
+import imageUrlBuilder from '@sanity/image-url';
+import BlockContent from "@sanity/block-content-to-react";
 
-export default function JournalPost() {
+const builder = imageUrlBuilder(sanityClient)
+
+function urlFor(source) {
+  return builder.image(source)
+}
+
+export default function JournalPost({ isMobile }) {
   const [singlePost, setSinglePost] = useState(null)
   const { slug } = useParams();
 
@@ -47,7 +54,7 @@ export default function JournalPost() {
     <main>
       <section className='post-section'>
         <div className="container-full">
-          <div className='header-image' style={{ backgroundImage: 'url(' + singlePost.headerImage.asset.url + ')'}} alt={singlePost.title}>
+          <div className='header-image' style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(860).auto('format') + ')'}} alt={singlePost.title}>
             <div className="title-container">
               <h1 className="single-post-title">{singlePost.title}<span className="post-number">/{singlePost.postNumber}</span></h1>
               <p className='post-date'>{(() => {
