@@ -4,9 +4,9 @@ import Linkedin from '../images/linkedin-icon.png'
 import Github from '../images/github-icon.png'
 import Codepen from '../images/codepen-icon.png'
 
-export default function SocialNav({ invert, row, position, transform, margin }) {
+export default function SocialNav({ invert, row, position, transform, margin, justify }) {
     return (
-        <div className="social-nav" style={{ filter: invert, flexDirection: row, position: position, transform: transform, margin: margin }}>
+        <div className="social-nav" style={{ filter: invert, flexDirection: row, position: position, transform: transform, margin: margin, justifyContent: justify }}>
             <a className="social-nav-link" href="https://www.instagram.com/drucialwhite/" target="_blank" rel="noreferrer">
                 <img src={Instagram} alt='Instagram profile' className="social-nav-img" />
             </a>

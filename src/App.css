@@ -612,6 +612,7 @@ section {
 .btn-container {
 	display: flex;
 	justify-content: center;
+	margin-top: .5rem;
 }
 
 .submit-button {
@@ -664,6 +665,7 @@ section {
 		grid-template-columns: 1fr;
 		position: relative;
 		z-index: 1;
+		box-shadow: 0px 0px 15px rgba(0 0 0 / .2);
 	}
 
 	.hamburger {
@@ -708,6 +710,7 @@ section {
 		width: 100%;
 		top: 100%;
 		z-index: -1;
+		box-shadow: 0px 0px 15px rgba(0 0 0 / .2);
 	}
 
 	.nav-link {
@@ -783,7 +786,9 @@ section {
 
 	.contact-form {
 		z-index: 0;
-		padding: 8vw 1rem 1rem 1rem;
+		padding: 1rem;
+		width: 100%;
+		background: var(--color-light);
 	}
 
 	.contact-title {
@@ -797,6 +802,7 @@ section {
 	}
 
 	.vertical-title {
+		display: none;
 		color: var(--color-dark);
 		opacity: 0.075;
 		transform: rotate(0deg);

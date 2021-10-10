@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Form from './ContactForm';
-import sanityClient from '../client'
+import sanityClient from '../client';
+import imageUrlBuilder from '@sanity/image-url';
 
+const builder = imageUrlBuilder(sanityClient)
 
-export default function Contact() {
+function urlFor(source) {
+  return builder.image(source)
+}
+
+export default function Contact({ isMobile }) {
     const [singlePage, setSinglePage] = useState(null)
     useEffect(() => {
         sanityClient.fetch(`*[slug.current == 'contact']{
@@ -29,7 +35,7 @@ export default function Contact() {
 
     return (
         <main>
-            <section style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}}>
+            <section style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(860).auto('format') + ')'}}>
                 <div className="container-full flex-container flex-center">
                     <Form />
                 </div>

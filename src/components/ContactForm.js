@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import SocialNav from './SocialNav'
 import sanityClient from '../client'
 import BlockContent from "@sanity/block-content-to-react"
 
@@ -117,13 +118,14 @@ export default function Form() {
                     projectID="2echsd1t"
                     dataset="production"
                 />
+                <SocialNav  position={'static'} invert={'invert(100%)'} row={'row'} transform={'none'} margin={0} justify={'space-around'}/>
                 <input type="hidden" name="form-name" value="Contact Form" />
                 <label ref={nameRef} htmlFor="Name">Name</label>
                 <input type="text" name="Name" value={Name} onChange={handleChange}/>
                 <label ref={mailRef}htmlFor="Email">Email</label>
                 <input type="email" name="Email" value={Email} onChange={handleChange}/>
                 <label ref={messageRef}htmlFor="Message">Message</label>
-                <textarea type="text" name="Message" rows="8" value={Message} onChange={handleChange}/>
+                <textarea type="text" name="Message" rows="6" value={Message} onChange={handleChange}/>
                 <div className="btn-container">
                     <button type="button" className="submit-button" onClick={validate}>Send</button>
                 </div>
