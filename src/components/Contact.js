@@ -35,7 +35,7 @@ export default function Contact({ isMobile, screenBreak }) {
 
     return (
         <main>
-            <section style={{ backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'}}>
+            <section style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'} : { backgroundImage: 'none', background: 'var(--color-light)'}}>
                 <div className="container-full flex-container flex-center">
                     <Form />
                 </div>
