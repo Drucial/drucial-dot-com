@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import sanityClient from '../client'
 import SocialNav from './SocialNav'
+import imageUrlBuilder from '@sanity/image-url'
 import BlockContent from "@sanity/block-content-to-react"
 
-export default function About() {
+const builder = imageUrlBuilder(sanityClient)
+
+function urlFor(source) {
+  return builder.image(source)
+}
+
+export default function About({ isMobile }) {
     const [singlePage, setSinglePage] = useState(null)
     const [author, setAuthor] = useState(null)
 // 
@@ -62,46 +69,44 @@ export default function About() {
     if (!author) return ""
 
     return (
-        <>
-            <main>
-                <section>
-                    <div className="container-full">
-                        <div className="header-image" style={{ backgroundImage: 'url(' + singlePage.mainImage.asset.url + ')'}} alt={singlePage.title}>
-                            <div className="title-container">
-                                <h1 className="single-post-title">{singlePage.title}</h1>
-                            </div>
+        <main>
+            <section>
+                <div className="container-full">
+                    <div className="header-image" style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(860).auto('format') + ')'}} alt={singlePage.title}>
+                        <div className="title-container">
+                            <h1 className="single-post-title">{singlePage.title}</h1>
                         </div>
-                        <div className="content-container">
-                            <BlockContent 
-                                className='block-content'
-                                blocks={singlePage.body}
-                                projectID="2echsd1t"
-                                dataset="production"
-                            />
-                        </div>
-                        <div className="header-image" style={{ backgroundImage: 'url(' + singlePage.subImage.asset.url + ')'}} alt={singlePage.title}>
-                            <div className="profile-container">
-                                <div className="profile">
-                                    <img className="profile-pic" src={author.profileImage.asset.url} alt={author.profileAlt}/>
-                                    <div className="profile-details">
-                                        <h2>{author.name}</h2>
-                                        <p>{author.description}</p>
-                                        <SocialNav  position={'static'} invert={'invert(100%)'} row={'row'} transform={'none'} margin={0} />
-                                    </div>
+                    </div>
+                    <div className="content-container">
+                        <BlockContent 
+                            className='block-content'
+                            blocks={singlePage.body}
+                            projectID="2echsd1t"
+                            dataset="production"
+                        />
+                    </div>
+                    <div className="header-image" style={isMobile === false ? { backgroundImage: 'url(' + urlFor(singlePage.subImage).width(1920).auto('format') + ')'} : { backgroundImage: 'url(' + urlFor(singlePage.subImage).width(860).auto('format') + ')'}} alt={singlePage.title}>
+                        <div className="profile-container">
+                            <div className="profile">
+                                <img className="profile-pic" src={isMobile === false ? urlFor(author.profileImage).width(500).auto('format') : urlFor(author.profileImage).width(250).auto('format')} alt={author.profileAlt}/>
+                                <div className="profile-details">
+                                    <h2>{author.name}</h2>
+                                    <p>{author.description}</p>
+                                    <SocialNav  position={'static'} invert={'invert(100%)'} row={'row'} transform={'none'} margin={0} />
                                 </div>
                             </div>
                         </div>
-                        <div className="content-container about">
-                            <BlockContent 
-                                className='block-content'
-                                blocks={author.bio}
-                                projectID="2echsd1t"
-                                dataset="production"
-                            />
-                        </div>
                     </div>
-                </section>
-            </main>
-        </>
+                    <div className="content-container about">
+                        <BlockContent 
+                            className='block-content'
+                            blocks={author.bio}
+                            projectID="2echsd1t"
+                            dataset="production"
+                        />
+                    </div>
+                </div>
+            </section>
+        </main>
     )
 }
