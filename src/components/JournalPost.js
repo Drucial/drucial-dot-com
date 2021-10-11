@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client';
 import imageUrlBuilder from '@sanity/image-url';
@@ -13,22 +13,15 @@ function urlFor(source) {
 export default function JournalPost({ screenBreak }) {
   const [singlePost, setSinglePost] = useState(null)
   const { slug } = useParams();
-  const blockRef = useRef();
 
-  useEffect(() => {
-    if(!blockRef.current) return;
-    const img = blockRef.current.querySelectorAll('img');
-
-    function imageUrlUpdate() {
-      for(let i = 0; i < img.length; i++) {
-        const src = img[i].src;
-        const baseSrc = src.split('?')[0];
-        img[i].src = baseSrc + '?w=' + screenBreak + '&auto=format';
-      }
-    }
-    imageUrlUpdate()
-  }, [singlePost, blockRef,  screenBreak])
-
+  function blockImageRenderer({ node }) {
+    return <img className="block-image" src={urlFor(node.asset.url).width(screenBreak).auto('format')} alt={node.attribution} />;
+  };
+  const serializer = {
+    types: {
+      image: blockImageRenderer,
+    },
+  };
 
   useEffect(() => {
     sanityClient.fetch(`*[slug.current == '${slug}']{
@@ -49,13 +42,16 @@ export default function JournalPost({ screenBreak }) {
         asset->{
           _id,
           url
-        }
+        },
+        attribution,
       },
       body[]{
         ...,
         asset->{
           ...,
-          "_key": _id
+          "_key": _id,
+          attribution,
+          caption,
         }
       }
     }`
@@ -70,7 +66,7 @@ export default function JournalPost({ screenBreak }) {
     <main>
       <section className='post-section'>
         <div className="container-full">
-          <div className='header-image' style={{backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(screenBreak).auto('format') + ')'}} alt={singlePost.title}>
+          <div className='header-image' style={{backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(screenBreak).auto('format') + ')'}} aria-label={singlePost.mainImage.attribution} role='img'>
             <div className="title-container">
               <h1 className="single-post-title">{singlePost.title}<span className="post-number">/{singlePost.postNumber}</span></h1>
               <p className='post-date'>{(() => {
@@ -79,10 +75,11 @@ export default function JournalPost({ screenBreak }) {
             })()}</p>
             </div>
           </div>
-          <div ref={blockRef} className="content-container">
+          <div className="content-container">
             <BlockContent
               className='block-content'
               blocks={singlePost.body}
+              serializers={serializer}
               projectID="2echsd1t"
               dataset="production"
             />

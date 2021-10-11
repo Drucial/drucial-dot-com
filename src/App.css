@@ -275,11 +275,11 @@ section {
 .block-content p:not(first-child),
 .block-content h2,
 .block-content h3,
-.block-content figure {
+.block-image {
 	margin-top: 1rem;
 }
 
-.block-content > *:not(figure) {
+.block-content > *:not(img) {
 	max-width: 850px;
 	margin-left: auto;
 	margin-right: auto;
@@ -302,7 +302,7 @@ section {
 	margin-top: 1rem;
 }
 
-.block-content img {
+.block-image {
 	width: 100%;
 }
 

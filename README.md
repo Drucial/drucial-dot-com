@@ -1,3 +1,3 @@
-# www.drucial.com
+# [Drucial.com](https://www.drucial.com)
 
 Just my personal journal and my first react app.
