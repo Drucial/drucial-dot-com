@@ -24,6 +24,18 @@ export default {
         options: {
           hotspot: true,
         },
+        fields: [
+          {
+            name: 'caption',
+            type: 'string',
+            title: 'Caption'
+          },
+          {
+            name: 'attribution',
+            type: 'string',
+            title: 'Attribution',
+          }
+        ]
       },
       {
         name: 'imageAlt',
@@ -37,6 +49,18 @@ export default {
         options: {
           hotspot: true,
         },
+        fields: [
+          {
+            name: 'caption',
+            type: 'string',
+            title: 'Caption'
+          },
+          {
+            name: 'attribution',
+            type: 'string',
+            title: 'Attribution',
+          }
+        ]
       },
       {
         name: 'subImageAlt',
