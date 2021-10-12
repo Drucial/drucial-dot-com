@@ -53,7 +53,8 @@ export default function About({ isMobile, screenBreak }) {
                 asset->{
                 _id,
                 url
-                }
+                },
+                attribution
             },
             profileAlt,
             description,
@@ -72,7 +73,7 @@ export default function About({ isMobile, screenBreak }) {
         <main>
             <section>
                 <div className="container-full">
-                    <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'}} alt={singlePage.title}>
+                    <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'}}>
                         <div className="title-container">
                             <h1 className="single-post-title">{singlePage.title}</h1>
                         </div>
@@ -85,10 +86,10 @@ export default function About({ isMobile, screenBreak }) {
                             dataset="production"
                         />
                     </div>
-                    <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.subImage).width(screenBreak).auto('format') + ')'}} alt={singlePage.title}>
+                    <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.subImage).width(screenBreak).auto('format') + ')'}}>
                         <div className="profile-container">
                             <div className="profile">
-                                <img className="profile-pic" src={urlFor(author.profileImage).width(300).auto('format')} alt={author.profileAlt}/>
+                                <img className="profile-pic" src={urlFor(author.profileImage).width(150).auto('format')} alt={author.profileImage.attribution}/>
                                 <div className="profile-details">
                                     <h2>{author.name}</h2>
                                     <p>{author.description}</p>

@@ -59,7 +59,8 @@ export default function Home({ isMobile, screenBreak }) {
             asset->{
             _id,
             url
-            }
+            },
+            attribution,
           }
         }`
       )
@@ -114,10 +115,16 @@ export default function Home({ isMobile, screenBreak }) {
       </section>
       {allPostsData &&
       allPostsData.map((post, index) => (
-        <section className="home-section" key={index} style={isMobile === false ? { backgroundImage: 'url(' + urlFor(post.mainImage).width(1920).auto('format').fit('min') + ')'} : { backgroundImage: "none"}}>
+        <section 
+          className="home-section" 
+          key={index} 
+          style={isMobile === false ? { backgroundImage: 'url(' + urlFor(post.mainImage).width(1920).auto('format').fit('min') + ')'} : { backgroundImage: "none"}}
+          aria-label={isMobile === false ? post.mainImage.attribution : ""}
+          role={isMobile === false ? 'img' : ''}
+        >
           <div className="container-left">
             <Link to={'/' + post.slug.current} key={post.slug.current} className="post-image-link">
-            {isMobile === false ? <></> : <img className="main-image" src={urlFor(post.mainImage).width(860).auto('format').fit('min').url()} alt={post.imageAlt}/>}
+            {isMobile === false ? <></> : <img className="main-image" src={urlFor(post.mainImage).width(860).auto('format').fit('min').url()} alt={post.mainImage.attribution}/>}
             </Link>
           </div>
           <div className="container-right">
