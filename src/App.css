@@ -767,7 +767,9 @@ section {
 		text-align: center;
 		font-size: 11vw;
 		margin: 0;
-		-webkit-text-fill-color: var(--color-light);
+		z-index: 2;
+		background-image: none !important;
+		background-clip: border-box;
 	}
 
 	.title-container {
