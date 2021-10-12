@@ -236,6 +236,7 @@ section {
 	);
 	backdrop-filter: blur(0.5em);
 	-webkit-backdrop-filter: blur(0.5rem);
+	position: relative;
 }
 
 .container-full {
@@ -768,7 +769,6 @@ section {
 		text-align: center;
 		font-size: 11vw;
 		margin: 0;
-		z-index: 10;
 		-webkit-text-fill-color: var(--color-light);
 	}
 
