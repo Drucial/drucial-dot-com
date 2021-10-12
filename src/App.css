@@ -764,12 +764,12 @@ section {
 		bottom: calc(100% + .5rem);
 		left: 0;
 		right: 0;
+		color: var(--color-light);
 		text-align: center;
 		font-size: 11vw;
 		margin: 0;
-		z-index: 2;
-		background-image: none !important;
-		background-clip: border-box;
+		z-index: 10;
+		-webkit-text-fill-color: var(--color-light);
 	}
 
 	.title-container {
