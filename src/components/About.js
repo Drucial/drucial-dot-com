@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import sanityClient from '../client'
-import SocialNav from './SocialNav'
-import imageUrlBuilder from '@sanity/image-url'
-import BlockContent from "@sanity/block-content-to-react"
+import { Helmet } from 'react-helmet';
+import sanityClient from '../client';
+import SocialNav from './SocialNav';
+import imageUrlBuilder from '@sanity/image-url';
+import BlockContent from "@sanity/block-content-to-react";
 
-const builder = imageUrlBuilder(sanityClient)
+const builder = imageUrlBuilder(sanityClient);
 
 function urlFor(source) {
   return builder.image(source)
-}
+};
 
 export default function About({ isMobile, screenBreak }) {
-    const [singlePage, setSinglePage] = useState(null)
-    const [author, setAuthor] = useState(null)
+    const [singlePage, setSinglePage] = useState(null);
+    const [author, setAuthor] = useState(null);
 // 
 // Content Import
 // 
@@ -71,6 +72,26 @@ export default function About({ isMobile, screenBreak }) {
 
     return (
         <main>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="Drucial.com is my personal digital journal. Serving as a brain dump for me, I cover a wide range of topics from education to riding bicycles."
+                />
+                <meta property="og:title" content="Drucial | About" />
+                <meta
+                    property="og:description"
+                    content="Drucial.com is my personal digital journal. Serving as a brain dump for me, I cover a wide range of topics from education to riding bicycles."
+                />
+                <meta
+                    property="og:image"
+                    content={urlFor(singlePage.mainImage).width(512)}
+                />
+                <meta
+                    property="og:url"
+                    content="https://www.drucial.com/about"
+                />
+                <title>Drucial | About</title>
+            </Helmet>
             <section>
                 <div className="container-full">
                     <div className="header-image" style={{ backgroundImage: 'url(' + urlFor(singlePage.mainImage).width(screenBreak).auto('format') + ')'}}>
@@ -110,4 +131,4 @@ export default function About({ isMobile, screenBreak }) {
             </section>
         </main>
     )
-}
+};

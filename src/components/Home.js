@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 import SocialNav from './SocialNav'
 import ScrollNav from './ScrollNav'
 import sanityClient from '../client';
@@ -99,6 +100,26 @@ export default function Home({ isMobile, screenBreak }) {
 
   return (
     <>
+    <Helmet>
+      <meta
+        name="description"
+        content="A digital journal covering the verities of my life, experiences, hobbies and passions."
+      />
+      <meta property="og:title" content="Drucial | Verities of Life" />
+      <meta
+        property="og:description"
+        content="A digital journal covering the verities of my life, experiences, hobbies and passions."
+      />
+      <meta
+        property="og:image"
+        content="https://www.drucial.com/thumbnail.jpg"
+      />
+      <meta
+        property="og:url"
+        content="https://www.drucial.com/"
+      />
+      <title>Drucial | Verities of Life</title>
+    </Helmet>
     {isMobile === false ? <><ScrollNav /><SocialNav /></> : <></>}
     <main ref={mainRef}>
       <section className="home-section" style={{ backgroundImage: 'url(' + urlFor(home.mainImage).width(screenBreak).auto('format').fit('min') + ')'}}>

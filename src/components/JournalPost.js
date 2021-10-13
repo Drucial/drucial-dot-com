@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from "react-helmet";
 import { useParams } from 'react-router-dom';
 import sanityClient from '../client';
 import imageUrlBuilder from '@sanity/image-url';
@@ -32,6 +33,7 @@ export default function JournalPost({ screenBreak }) {
       publishedOn,
       imageAlt,
       headerAlt,
+      excerpt,
       headerImage{
         asset->{
           _id,
@@ -64,6 +66,26 @@ export default function JournalPost({ screenBreak }) {
 
   return (
     <main>
+      <Helmet>
+          <meta
+              name="description"
+              content={singlePost.excerpt}
+          />
+          <meta property="og:title" content={"Drucial | " + singlePost.title} />
+          <meta
+              property="og:description"
+              content={singlePost.excerpt}
+          />
+          <meta
+              property="og:image"
+              content={urlFor(singlePost.mainImage).width(512)}
+          />
+          <meta
+              property="og:url"
+              content={"https://www.drucial.com/" + slug}
+          />
+          <title>Drucial | {singlePost.title}</title>
+      </Helmet>
       <section className='post-section'>
         <div className="container-full">
           <div className='header-image' style={{backgroundImage: 'url(' + urlFor(singlePost.headerImage).width(screenBreak).auto('format') + ')'}} aria-label={singlePost.mainImage.attribution} role='img'>
