@@ -75,7 +75,7 @@ a:active,
 		"nav"
 		"main";
 	height: 100vh;
-	height: calc(var(--vh, 1vh) * 100);
+	height: calc((var(--vh, 1vh) * 100) + 1px);
 	width: 100vw;
 	position: relative;
 	overflow: hidden;
