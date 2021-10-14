@@ -9,8 +9,7 @@
     {
       "src": "drucial_icon_192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
+      "sizes": "192x192"
     },
     {
       "src": "drucial_icon_512.png",
@@ -20,6 +19,12 @@
     {
       "src": "drucial_icon.svg",
       "sizes": "150x150"
+    },
+    {
+      "src": "drucial_maskable_icon.png",
+      "type": "image/png",
+      "sizes": "512x512 192x192",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "./",
