@@ -18,7 +18,7 @@
     },
     {
       "src": "drucial_icon.svg",
-      "sizes": "16x16 24x24 32x32 64x64 128x128 256x256 512x512"
+      "sizes": "150x150"
     }
   ],
   "start_url": ".",
