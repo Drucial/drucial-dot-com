@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from "react-helmet";
 import { useParams } from 'react-router-dom';
+import Footer from './Footer'
 import sanityClient from '../client';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from "@sanity/block-content-to-react";
@@ -31,8 +32,6 @@ export default function JournalPost({ screenBreak }) {
       slug,
       postNumber,
       publishedOn,
-      imageAlt,
-      headerAlt,
       excerpt,
       headerImage{
         asset->{
@@ -108,6 +107,7 @@ export default function JournalPost({ screenBreak }) {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   )
 }

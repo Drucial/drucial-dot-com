@@ -27,7 +27,7 @@ export default {
       title: 'Main image',
       type: 'image',
       options: {
-        hotspot: true,
+        hotspot: false,
       },
       fields: [
         {
@@ -41,18 +41,13 @@ export default {
           title: 'Attribution',
         }
       ]
-    },
-    {
-      name: 'imageAlt',
-      title: 'Image Alt Text',
-      type: 'string',
     },
     {
       name: 'headerImage',
       title: 'Header image',
       type: 'image',
       options: {
-        hotspot: true,
+        hotspot: false,
       },
       fields: [
         {
@@ -66,11 +61,6 @@ export default {
           title: 'Attribution',
         }
       ]
-    },
-    {
-      name: 'headerAlt',
-      title: 'Header Image Alt',
-      type: 'string',
     },
     {
       name: 'publishedOn',

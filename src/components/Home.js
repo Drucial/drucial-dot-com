@@ -55,7 +55,6 @@ export default function Home({ isMobile, screenBreak }) {
           excerpt,
           slug,
           publishedOn,
-          imageAlt,
           mainImage{
             asset->{
             _id,

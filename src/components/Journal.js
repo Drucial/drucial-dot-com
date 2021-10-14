@@ -16,7 +16,6 @@ export default function Journal({ toggle, style }) {
           excerpt,
           slug,
           publishedOn,
-          imageAlt,
           mainImage{
             asset->{
             _id,

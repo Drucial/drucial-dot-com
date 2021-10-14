@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import Footer from './Footer';
 import sanityClient from '../client';
 import SocialNav from './SocialNav';
 import imageUrlBuilder from '@sanity/image-url';
@@ -129,6 +130,7 @@ export default function About({ isMobile, screenBreak }) {
                     </div>
                 </div>
             </section>
+            <Footer />
         </main>
     )
 };

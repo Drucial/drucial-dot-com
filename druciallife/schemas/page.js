@@ -22,7 +22,7 @@ export default {
         title: 'Main image',
         type: 'image',
         options: {
-          hotspot: true,
+          hotspot: false,
         },
         fields: [
           {
@@ -36,18 +36,13 @@ export default {
             title: 'Attribution',
           }
         ]
-      },
-      {
-        name: 'imageAlt',
-        title: 'Image Alt Text',
-        type: 'string',
       },
       {
         name: 'subImage',
         title: 'Sub image',
         type: 'image',
         options: {
-          hotspot: true,
+          hotspot: false,
         },
         fields: [
           {
@@ -61,11 +56,6 @@ export default {
             title: 'Attribution',
           }
         ]
-      },
-      {
-        name: 'subImageAlt',
-        title: 'Sub Image Alt Text',
-        type: 'string',
       },
       {
         name: 'body',
