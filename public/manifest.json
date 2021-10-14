@@ -4,18 +4,21 @@
   "icons": [
     {
       "src": "drucial_favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "sizes": "64x64 32x32 24x24 16x16"
     },
     {
-      "src": "drucial_icon_192.jpg",
-      "type": "image/jpg",
+      "src": "drucial_icon_192.png",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "drucial_icon_512.jpg",
-      "type": "image/jpg",
+      "src": "drucial_icon_512.png",
+      "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "drucial_icon.svg",
+      "sizes": "16x16 24x24 32x32 64x64 128x128 256x256 512x512"
     }
   ],
   "start_url": ".",
