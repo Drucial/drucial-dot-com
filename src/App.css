@@ -164,8 +164,12 @@ footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	max-width: 818px;
 	margin: 0 auto;
+}
+
+.footer-link {
+	width: 52px;
+	height: 52px;
 }
 
 .footer-info {
