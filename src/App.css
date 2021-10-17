@@ -80,6 +80,15 @@ a:active,
 	position: relative;
 	overflow: hidden;
 }
+/* Body Transitions */
+
+.fade-enter {
+	opacity: 0;
+}
+.fade-enter-active {
+	opacity: 1;
+	transition: opacity 300ms ease-in;
+}
 
 /*  */
 /* NAVIGATION STYLES*/

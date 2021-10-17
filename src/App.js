@@ -7,6 +7,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import JournalPost from './components/JournalPost';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const App = () => {
   const screenRef = useRef()
@@ -26,15 +27,25 @@ const App = () => {
   }, [isMobile])
   return (
     <Router>
-      <div ref={screenRef} className="screen">
-        <Nav isMobile={isMobile}/>
-        <Switch>
-          <Route path='/' exact ><Home isMobile={isMobile} screenBreak={screenBreak}/></Route>
-          <Route path='/about' ><About isMobile={isMobile} screenBreak={screenBreak}/></Route>
-          <Route path='/contact' ><Contact isMobile={isMobile} screenBreak={screenBreak}/></Route>
-          <Route path="/:slug" ><JournalPost isMobile={isMobile} screenBreak={screenBreak}/></Route>
-        </Switch>
-      </div>
+      <Route render= {({ location }) => (
+        <TransitionGroup>
+          <CSSTransition
+          key={location.key}
+          timeout={300}
+          classNames="fade"
+          >
+            <div ref={screenRef} className="screen">
+              <Nav isMobile={isMobile}/>
+                <Switch location={location}>
+                  <Route path='/' exact ><Home isMobile={isMobile} screenBreak={screenBreak}/></Route>
+                  <Route path='/about' ><About isMobile={isMobile} screenBreak={screenBreak}/></Route>
+                  <Route path='/contact' ><Contact isMobile={isMobile} screenBreak={screenBreak}/></Route>
+                  <Route path="/:slug" ><JournalPost isMobile={isMobile} screenBreak={screenBreak}/></Route>
+                </Switch>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      )}/>
     </Router>
   )
 }

@@ -16,6 +16,7 @@
     "react-scripts": "4.0.3",
     "react-snap": "^1.23.0",
     "react-spring": "^9.2.4",
+    "react-transition-group": "^4.4.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -44,6 +45,10 @@
     ]
   },
   "reactSnap": {
-    "include" : ["/", "/about/", "/contact/"]
+    "include": [
+      "/",
+      "/about/",
+      "/contact/"
+    ]
   }
 }
