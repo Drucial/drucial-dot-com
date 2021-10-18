@@ -47,8 +47,8 @@
   "reactSnap": {
     "include": [
       "/",
-      "/about/",
-      "/contact/"
+      "/about",
+      "/contact"
     ]
   }
 }
