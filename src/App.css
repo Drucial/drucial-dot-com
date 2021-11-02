@@ -326,7 +326,7 @@ section {
 	margin-top: 1rem;
 }
 
-.block-content > *:not(img) {
+.block-content {
 	max-width: 850px;
 	margin-left: auto;
 	margin-right: auto;
