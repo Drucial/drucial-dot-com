@@ -80,12 +80,12 @@ export default function About({ isMobile, screenBreak }) {
 			<Helmet>
 				<meta
 					name="description"
-					content="Drucial.com is my personal digital journal. Serving as a brain dump for me, I cover a wide range of topics from education to riding bicycles."
+					content="Drucial.com is my personal dev journal. Serving as a brain dump for me, I cover a wide range of topics from web development to technology"
 				/>
 				<meta property="og:title" content="Drucial | About" />
 				<meta
 					property="og:description"
-					content="Drucial.com is my personal digital journal. Serving as a brain dump for me, I cover a wide range of topics from education to riding bicycles."
+					content="Drucial.com is my personal dev journal. Serving as a brain dump for me, I cover a wide range of topics from web development to technology"
 				/>
 				<meta
 					property="og:image"

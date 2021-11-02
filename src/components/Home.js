@@ -104,19 +104,19 @@ export default function Home({ isMobile, screenBreak }) {
 			<Helmet>
 				<meta
 					name="description"
-					content="A digital journal covering the verities of my life, experiences, hobbies and passions."
+					content="A digital journal covering topics related to web development, programming and technology."
 				/>
-				<meta property="og:title" content="Drucial | Verities of Life" />
+				<meta property="og:title" content="Drucial | A Dev Journal" />
 				<meta
 					property="og:description"
-					content="A digital journal covering the verities of my life, experiences, hobbies and passions."
+					content="A digital journal covering topics related to web development, programming and technology."
 				/>
 				<meta
 					property="og:image"
 					content="https://www.drucial.com/thumbnail.jpg"
 				/>
 				<meta property="og:url" content="https://www.drucial.com/" />
-				<title>Drucial | Verities of Life</title>
+				<title>Drucial | A Dev Journal</title>
 			</Helmet>
 			{isMobile === false ? (
 				<>
