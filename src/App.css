@@ -814,7 +814,7 @@ section {
 		right: 0;
 		color: var(--color-light);
 		text-align: center;
-		font-size: 11vw;
+		font-size: 10vw;
 		margin: 0;
 		-webkit-text-fill-color: var(--color-light);
 	}
