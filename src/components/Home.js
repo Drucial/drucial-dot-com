@@ -116,7 +116,7 @@ export default function Home({ isMobile, screenBreak }) {
 					content="https://www.drucial.com/thumbnail.jpg"
 				/>
 				<meta property="og:url" content="https://www.drucial.com/" />
-				<title>Drucial | A Dev Journal</title>
+				<title>Drucial | A Dev's Journal</title>
 			</Helmet>
 			{isMobile === false ? (
 				<>
